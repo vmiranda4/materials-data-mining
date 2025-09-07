@@ -4,6 +4,13 @@
 format: jb-book
 root: intro
 chapters:
-- file: markdown
-- file: notebooks
-- file: markdown-notebooks
+  - file: setup/environment_setup
+  - file: materials_project/exploring_materials_project
+  - file: visualization/structure_visualization
+  - file: querying/querying_materials
+  - file: data_mining/data_cleaning
+    sections:
+      - file: data_mining/feature_generation
+      - file: data_mining/materials_scanning
+  - file: machine_learning/intro_machine_learning
+  - file: summary

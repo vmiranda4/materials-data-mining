@@ -1,0 +1,724 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Meeting Materials Project &#8212; Materials Data Mining with Python</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'materials_project/exploring_materials_project';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Environment Setup" href="../setup/environment_setup.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Materials Data Mining with Python - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Materials Data Mining with Python - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../setup/environment_setup.html">Environment Setup</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Meeting Materials Project</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/vmiranda4/materials-data-mining/master?urlpath=tree/materials_project/exploring_materials_project.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/vmiranda4/materials-data-mining/blob/master/materials_project/exploring_materials_project.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/vmiranda4/materials-data-mining" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/vmiranda4/materials-data-mining/issues/new?title=Issue%20on%20page%20%2Fmaterials_project/exploring_materials_project.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/materials_project/exploring_materials_project.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Meeting Materials Project</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-register-or-log-in">Step 1 - Register or Log In</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-exploring-materials">Step 2 - Exploring Materials</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-dowloading-the-structure">Step 3 - Dowloading the Structure</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-exploring-materials-properites">Step 4 - Exploring Materials Properites</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#phase-diagram">4.1 Phase Diagram</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#formation-energy">4.2 Formation energy</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#electronic-structure-band-gap-and-dos">4.3 Electronic Structure: Band Gap and DOS</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-key-takeaways">Step 5 - Key Takeaways</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="meeting-materials-project">
+<h1>Meeting Materials Project<a class="headerlink" href="#meeting-materials-project" title="Link to this heading">#</a></h1>
+<section id="step-1-register-or-log-in">
+<h2>Step 1 - Register or Log In<a class="headerlink" href="#step-1-register-or-log-in" title="Link to this heading">#</a></h2>
+<p>To obtain the structures of the materials we want to study, we will use the <a class="reference external" href="https://next-gen.materialsproject.org/">Materials Project</a>, a comprehensive open-access database for computational materials science.</p>
+<p>Before accessing data through code, we will first explore it manually to better understand its interface and capabilities.</p>
+<ol class="arabic simple">
+<li><p>Open the <a class="reference external" href="https://next-gen.materialsproject.org/">Materials Project</a> in your browser.</p></li>
+<li><p>Click on the <strong>green “Login or Register”</strong> button at the top right of the page.</p></li>
+</ol>
+<img src="../_static/images/materials_project/1_open_mp.png" width=700 style=margin:auto/>
+<ol class="arabic simple" start="3">
+<li><p>If you already have an account, sign in with your credentials. Otherwise, create a new account by following the instructions provided on the website</p></li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>tip: registering is required if you plan to use the <strong>API</strong> later in this tutorial to query data directly from Python</p>
+</div>
+</section>
+<section id="step-2-exploring-materials">
+<h2>Step 2 - Exploring Materials<a class="headerlink" href="#step-2-exploring-materials" title="Link to this heading">#</a></h2>
+<p>Once logged in, click the <strong>“Start Exploring Materials”</strong> button on the homepage.</p>
+<img src="../_static/images/materials_project/2_after_login.png" width=700 style=margin:auto/>
+<p>You will be redirected to the <strong>exploration interface</strong>, which consists of:</p>
+<ul class="simple">
+<li><p>A <strong>search bar</strong> where you can directly enter a material’s chemical formula or composition.</p></li>
+<li><p>An interactive periodic table where you can select elements and explore all possible compounds containing them.</p></li>
+</ul>
+<img src="../_static/images/materials_project/3_exploration_interface.png" width=700 style=margin:auto/>
+<p>For this example, we will search for <span class="math notranslate nohighlight">\(\text{CaTiO}_3\)</span>:</p>
+<ol class="arabic simple">
+<li><p>Type <code class="docutils literal notranslate"><span class="pre">CaTiO3</span></code> in the search bar and hit <strong>Enter</strong>.</p></li>
+<li><p>A list of results matching your query will appear.</p></li>
+<li><p>On the left side, you will notice filtering options (e.g, by symmetry, space group, bandgap).</p></li>
+</ol>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Pause and explore: take a moment to play with the filters. This is a powerful feature to narrow down results for specific applications.</p>
+</div>
+<p>For now, click on the <strong>first entry</strong> under the <strong>“Material ID”</strong> columna, labeled <strong>mp-4019</strong>.</p>
+<img src="../_static/images/materials_project/4_search_result.png" width=700 style=margin:auto/>
+</section>
+<section id="step-3-dowloading-the-structure">
+<h2>Step 3 - Dowloading the Structure<a class="headerlink" href="#step-3-dowloading-the-structure" title="Link to this heading">#</a></h2>
+<p>Once you are on the material’s detail page, you will see a <strong>visualization</strong> of the structure alongside a computed properties.</p>
+<p>To download the crystallographic information file (<code class="docutils literal notranslate"><span class="pre">.cif</span></code>):</p>
+<ol class="arabic simple">
+<li><p>Locate the <strong>visualization box</strong> at the top of the page.</p></li>
+<li><p>Click the <strong>last icon</strong> on the top-right of that box – it is highlighted in blue in the figure below.</p></li>
+<li><p>Save the <code class="docutils literal notranslate"><span class="pre">.cif</span></code> file somewhere convenient. We will use it later when we start coding.</p></li>
+</ol>
+<img src="../_static/images/materials_project/5_download_structure.png" width=700 style=margin:auto/></section>
+<section id="step-4-exploring-materials-properites">
+<h2>Step 4 - Exploring Materials Properites<a class="headerlink" href="#step-4-exploring-materials-properites" title="Link to this heading">#</a></h2>
+<p>One of the most valuable features of Materials Project is the computed properties available for each material. In the left-hand <strong>Table of Contents</strong> menu, you will find categories such as:</p>
+<ul class="simple">
+<li><p>Summary</p></li>
+<li><p>Crystal Structure</p></li>
+<li><p>Properties</p></li>
+<li><p>Contributed Data</p></li>
+<li><p>Literature References</p></li>
+<li><p>External Links</p></li>
+<li><p>More</p></li>
+<li><p>Related Materials.</p></li>
+</ul>
+<p>We will focus on the properties section.</p>
+<img src="../_static/images/materials_project/6_properties_section.png" width=700 style=margin:auto/><section id="phase-diagram">
+<h3>4.1 Phase Diagram<a class="headerlink" href="#phase-diagram" title="Link to this heading">#</a></h3>
+<p>Navigate to <strong>Properties -&gt; Generate Phase Diagram</strong> and click the <strong>Generate</strong> button.
+After a moment, you will see an <strong>interactive phase diagram</strong>.</p>
+<img src="../_static/images/materials_project/7_phase_diagram.png" width=700 style=margin:auto/>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Interpretation</p>
+<ul class="simple">
+<li><p>Stable phases are highlighted in green.</p></li>
+<li><p>Unstable plases appear as red diamonds.</p></li>
+<li><p>The stable compounds tend to cluster at the bottom, between titanium and oxygen, meaning these elements often form stable oxides.</p></li>
+<li><p>Notice that there are no stable compounds formed solely by titanium and calcium.</p></li>
+<li><p>Our material, <span class="math notranslate nohighlight">\(\text{CaTiO}_3\)</span> is identified as stable.</p></li>
+</ul>
+</div>
+</section>
+<section id="formation-energy">
+<h3>4.2 Formation energy<a class="headerlink" href="#formation-energy" title="Link to this heading">#</a></h3>
+<p>The <strong>formation energy</strong> tells us how thermodynamically favorable it is for a compound to form.</p>
+<ul class="simple">
+<li><p>Lower formation energy <span class="math notranslate nohighlight">\(\rightarrow\)</span> more stable compoudn.</p></li>
+<li><p>In this example, stable phases typically have formation energies around <span class="math notranslate nohighlight">\(-3\text{eV}\)</span>.</p></li>
+<li><p>Unstable phases (red diamonds) have higher formation energies, often greater that <span class="math notranslate nohighlight">\(-2 \text{eV}\)</span>.</p></li>
+</ul>
+<p>This relationship is visible directly in the phase diagram.</p>
+</section>
+<section id="electronic-structure-band-gap-and-dos">
+<h3>4.3 Electronic Structure: Band Gap and DOS<a class="headerlink" href="#electronic-structure-band-gap-and-dos" title="Link to this heading">#</a></h3>
+<p>Now click on <strong>Electronic Structure</strong> in the left menu. You will find two key plots:</p>
+<ul>
+<li><p><strong>Band Structure</strong>:
+Shows the <strong>valence band</strong> (bottom) and the <strong>conduction band</strong> (top).
+The <strong>band gap</strong> is the energy region between them where no electronic states exist.</p>
+<p>For <span class="math notranslate nohighlight">\(\text{CaTiO}3\)</span>, the band gap is approximately <span class="math notranslate nohighlight">\(2.31 \text{eV}\)</span>, meaning it behaves as a <strong>semiconductor</strong>.</p>
+</li>
+<li><p><strong>Density of stated (DOS)</strong>:
+Reveals how electronic states are distributed among elements and orbitals.</p>
+<p>Here we observe that:</p>
+<ul class="simple">
+<li><p>Oxygen contributes maintly to the valence band.</p></li>
+<li><p>Calcium and titanium dominate the conduction band.</p></li>
+</ul>
+</li>
+</ul>
+<img src="../_static/images/materials_project/8_band_DOS.png" width=700 style=margin:auto/>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Reflection</p>
+<p>This separation between valence and conduction contributions is a commmon trend: anions (like oxygen) dominate the valence band and cations (like calcium and titanium) dominate the conduction band.</p>
+</div>
+</section>
+</section>
+<section id="step-5-key-takeaways">
+<h2>Step 5 - Key Takeaways<a class="headerlink" href="#step-5-key-takeaways" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Materials Project offers a huge database of computed material properties.</p></li>
+<li><p>We learned how to:</p>
+<ul>
+<li><p>Search for a material</p></li>
+<li><p>Download its <code class="docutils literal notranslate"><span class="pre">.cif</span></code> structure.</p></li>
+<li><p>Analyze phase stability, formation energies, and electronic properties.</p></li>
+</ul>
+</li>
+<li><p>Understanding the website’s interface will make it easier to use its API later for automated data mining.</p></li>
+</ul>
+<p>Next Step: In the following notebook, we’ll move from manual exploration to coding — using Python to query data directly from Materials Project and perform structured analyses.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "vmiranda4/materials-data-mining",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./materials_project"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../setup/environment_setup.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Environment Setup</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-register-or-log-in">Step 1 - Register or Log In</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-exploring-materials">Step 2 - Exploring Materials</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-dowloading-the-structure">Step 3 - Dowloading the Structure</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-exploring-materials-properites">Step 4 - Exploring Materials Properites</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#phase-diagram">4.1 Phase Diagram</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#formation-energy">4.2 Formation energy</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#electronic-structure-band-gap-and-dos">4.3 Electronic Structure: Band Gap and DOS</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-key-takeaways">Step 5 - Key Takeaways</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Valentina Miranda
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
