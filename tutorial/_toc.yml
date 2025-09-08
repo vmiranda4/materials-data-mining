@@ -4,6 +4,7 @@
 format: jb-book
 root: intro
 chapters:
+  - file: tools/tools_overview
   - file: setup/environment_setup
   - file: materials_project/exploring_materials_project
   - file: visualization/structure_visualization

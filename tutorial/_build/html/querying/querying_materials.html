@@ -1,0 +1,1036 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Querying Materials Data from the Materials Project using Pymatgen &#8212; Materials Data Mining with Python</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'querying/querying_materials';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Visualizing Crystal Structures with Pymatgen and ASE" href="../visualization/structure_visualization.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Materials Data Mining with Python - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Materials Data Mining with Python - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../tools/tools_overview.html">Overview of Tools and Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../setup/environment_setup.html">Environment Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../materials_project/exploring_materials_project.html">Meeting Materials Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../visualization/structure_visualization.html">Visualizing Crystal Structures with Pymatgen and ASE</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Querying Materials Data from the Materials Project using Pymatgen</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/vmiranda4/materials-data-mining/master?urlpath=tree/querying/querying_materials.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/vmiranda4/materials-data-mining/blob/master/querying/querying_materials.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/vmiranda4/materials-data-mining" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/vmiranda4/materials-data-mining/issues/new?title=Issue%20on%20page%20%2Fquerying/querying_materials.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/querying/querying_materials.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Querying Materials Data from the Materials Project using Pymatgen</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-import-necessary-libraries">Step 1 - Import Necessary Libraries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-setting-up-the-api-key">Step 2 - Setting Up the API Key</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-querying-by-chemical-formula">Step 3 - Querying by Chemical Formula</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-querying-by-material-id">Step 4 - Querying by Material ID</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-downloading-the-structure-as-a-cif-file">Step 5 - Downloading the Structure as a <code class="docutils literal notranslate"><span class="pre">.cif</span></code> File</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-6-exploring-structure-properties">Step 6 - Exploring Structure Properties</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-7-optional-teaser-structure-manipulation">Step 7 (optional) - Teaser: Structure Manipulation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#code-example-creating-vacancies-and-substitutions">Code Example: Creating Vacancies and Substitutions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-8-summary">Step 8 - Summary</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">Next Steps</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="querying-materials-data-from-the-materials-project-using-pymatgen">
+<h1>Querying Materials Data from the Materials Project using Pymatgen<a class="headerlink" href="#querying-materials-data-from-the-materials-project-using-pymatgen" title="Link to this heading">#</a></h1>
+<p>In this tutorial, we will learn how to <strong>query material data</strong> from the <a class="reference external" href="https://next-gen.materialsproject.org/">Materials Project</a> database using <strong>pymatgen</strong>, a powerful Python library for materials science.</p>
+<p>By the end of this tutorial, you will be able to:</p>
+<ul class="simple">
+<li><p>Set up your <strong>Materials Project API key</strong></p></li>
+<li><p>Query materials by <strong>formula</strong>, <strong>elements</strong>, or <strong>material ID</strong></p></li>
+<li><p>Retrieve <strong>structural</strong>, <strong>thermodynamic</strong>, and <strong>electronic</strong> properties</p></li>
+<li><p>Download <code class="docutils literal notranslate"><span class="pre">.cif</span></code> files for visualization and simulations</p></li>
+<li><p>Perform a <strong>sneak peek</strong> into structure manipulation using pymatgen</p></li>
+</ul>
+<p>In the previous tutorials we have become familiar with Materials Project and Pymatgen. Now we are going to use them together.</p>
+<section id="step-1-import-necessary-libraries">
+<h2>Step 1 - Import Necessary Libraries<a class="headerlink" href="#step-1-import-necessary-libraries" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import main tools</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mp_api.client</span><span class="w"> </span><span class="kn">import</span> <span class="n">MPRester</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pymatgen.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">Structure</span>
+
+<span class="c1"># We will also use pandas to make the data more readable</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/paladin/anaconda3/envs/matdata/lib/python3.11/site-packages/tqdm/auto.py:21: TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See https://ipywidgets.readthedocs.io/en/stable/user_install.html
+  from .autonotebook import tqdm as notebook_tqdm
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="step-2-setting-up-the-api-key">
+<h2>Step 2 - Setting Up the API Key<a class="headerlink" href="#step-2-setting-up-the-api-key" title="Link to this heading">#</a></h2>
+<p>To query the Materials Project database, you need an <strong>API key</strong>. This is necessary to make any request to the Materials Project API and there’s a unique key for each Materials Project account.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p><strong>You should not share your API key with anyone.</strong></p>
+</div>
+<p><strong>Steps to get you API key:</strong></p>
+<ol class="arabic">
+<li><p>Go to <a class="reference external" href="https://next-gen.materialsproject.org/">Materials Project</a></p></li>
+<li><p>Log in or create a free account. This step was done when we were introducing Materials Project. If you need more guidance, please revisit the tutorial: <a class="reference internal" href="../materials_project/exploring_materials_project.html"><span class="std std-doc">Exploring Materials Project</span></a></p></li>
+<li><p>We are going to the main page of Materials Project after logging in, which should look like this:</p>
+ <img src="../_static/images/querying/1_mp_mainpage.png" width=700 style=margin:auto/></li>
+</ol>
+<ol class="arabic" start="4">
+<li><p>Then we go to the top right and click on the API button and it will shows us this new page:</p>
+ <img src="../_static/images/querying/2_api.jpg" width=700 style=margin:auto/>
+</li>
+</ol>
+<p>Your personal API key should appear where the red line is located in the image. You can select and copy it, and then paste it in the following cell as indicated:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To run this notebook, you <strong>must</strong> provide your own Materials Project API key.
+Log in as indicated in <a class="reference external" href="https://next-gen.materialsproject.org/">Materials Project</a> → Dashboard → API Key.
+Replace <code class="docutils literal notranslate"><span class="pre">&quot;YOUR_API_KEY_HERE&quot;</span></code> in the code cell below.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Replace with your own API key! (keep the &#39;&#39; signs)</span>
+<span class="n">API_KEY</span> <span class="o">=</span> <span class="s2">&quot;YOUR_API_KEY_HERE&quot;</span>
+<span class="n">mpr</span> <span class="o">=</span> <span class="n">MPRester</span><span class="p">(</span><span class="n">API_KEY</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">3</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># Replace with your own API key! (keep the &#39;&#39; signs)</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">API_KEY</span> <span class="o">=</span> <span class="s2">&quot;YOUR_API_KEY_HERE&quot;</span>
+<span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">mpr</span> <span class="o">=</span> <span class="n">MPRester</span><span class="p">(</span><span class="n">API_KEY</span><span class="p">)</span>
+
+<span class="nn">File ~/anaconda3/envs/matdata/lib/python3.11/site-packages/mp_api/client/mprester.py:171,</span> in <span class="ni">MPRester.__init__</span><span class="nt">(self, api_key, endpoint, notify_db_version, include_user_agent, monty_decode, use_document_model, session, headers, mute_progress_bars)</span>
+<span class="g g-Whitespace">    </span><span class="mi">168</span> <span class="n">api_key</span> <span class="o">=</span> <span class="n">api_key</span> <span class="ow">or</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;MP_API_KEY&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">SETTINGS</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;PMG_MAPI_KEY&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">170</span> <span class="k">if</span> <span class="n">api_key</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">api_key</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">32</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">171</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">172</span>         <span class="s2">&quot;Please use a new API key from https://materialsproject.org/api &quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">173</span>         <span class="s2">&quot;Keys for the new API are 32 characters, whereas keys for the legacy &quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">174</span>         <span class="s2">&quot;API are 16 characters.&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">175</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">177</span> <span class="bp">self</span><span class="o">.</span><span class="n">api_key</span> <span class="o">=</span> <span class="n">api_key</span>
+<span class="g g-Whitespace">    </span><span class="mi">178</span> <span class="bp">self</span><span class="o">.</span><span class="n">endpoint</span> <span class="o">=</span> <span class="n">endpoint</span> <span class="ow">or</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">179</span>     <span class="s2">&quot;MP_API_ENDPOINT&quot;</span><span class="p">,</span> <span class="s2">&quot;https://api.materialsproject.org/&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">180</span> <span class="p">)</span>
+
+<span class="ne">ValueError</span>: Please use a new API key from https://materialsproject.org/api Keys for the new API are 32 characters, whereas keys for the legacy API are 16 characters.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="step-3-querying-by-chemical-formula">
+<h2>Step 3 - Querying by Chemical Formula<a class="headerlink" href="#step-3-querying-by-chemical-formula" title="Link to this heading">#</a></h2>
+<p>Let us start with a simple query: searching for all materials with the formula <span class="math notranslate nohighlight">\(\text{CaTiO}_3\)</span>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">MPRester.query()</span></code> lets us specify:</p>
+<ul class="simple">
+<li><p>The <strong>criteria</strong> (what we are looking for)</p></li>
+<li><p>The <strong>properties</strong> (what we want return)</p></li>
+</ul>
+<p>For now, we will extract:</p>
+<ul class="simple">
+<li><p>Material ID (<code class="docutils literal notranslate"><span class="pre">material_id</span></code>) <span class="math notranslate nohighlight">\(\rightarrow\)</span> Unique identifier used by Materials Project</p></li>
+<li><p>Formula (<code class="docutils literal notranslate"><span class="pre">formula_pretty</span></code>) <span class="math notranslate nohighlight">\(\rightarrow\)</span> Simplified chemical formula</p></li>
+<li><p>Formation energy per atom (<code class="docutils literal notranslate"><span class="pre">formation_energy_per_atom</span></code>) <span class="math notranslate nohighlight">\(\rightarrow\)</span> Energy required to form the compound (eV/atom)</p></li>
+<li><p>Band gap (<code class="docutils literal notranslate"><span class="pre">band_gap</span></code>) <span class="math notranslate nohighlight">\(\rightarrow\)</span> Band gap energy in electronvolts (eV)</p></li>
+</ul>
+<p>There are plenty of properties to retrieve from the query. Here is a list of all of them:</p>
+<p>[‘builder_meta’, ‘nsites’, ‘elements’, ‘nelements’, ‘composition’, ‘composition_reduced’, ‘formula_pretty’, ‘formula_anonymous’, ‘chemsys’, ‘volume’, ‘density’, ‘density_atomic’, ‘symmetry’, ‘property_name’, ‘material_id’, ‘deprecated’, ‘deprecation_reasons’, ‘last_updated’, ‘origins’, ‘warnings’, ‘structure’, ‘task_ids’, ‘uncorrected_energy_per_atom’, ‘energy_per_atom’, ‘formation_energy_per_atom’, ‘energy_above_hull’, ‘is_stable’, ‘equilibrium_reaction_energy_per_atom’, ‘decomposes_to’, ‘xas’, ‘grain_boundaries’, ‘band_gap’, ‘cbm’, ‘vbm’, ‘efermi’, ‘is_gap_direct’, ‘is_metal’, ‘es_source_calc_id’, ‘bandstructure’, ‘dos’, ‘dos_energy_up’, ‘dos_energy_down’, ‘is_magnetic’, ‘ordering’, ‘total_magnetization’, ‘total_magnetization_normalized_vol’, ‘total_magnetization_normalized_formula_units’, ‘num_magnetic_sites’, ‘num_unique_magnetic_sites’, ‘types_of_magnetic_species’, ‘bulk_modulus’, ‘shear_modulus’, ‘universal_anisotropy’, ‘homogeneous_poisson’, ‘e_total’, ‘e_ionic’, ‘e_electronic’, ‘n’, ‘e_ij_max’, ‘weighted_surface_energy_EV_PER_ANG2’, ‘weighted_surface_energy’, ‘weighted_work_function’, ‘surface_anisotropy’, ‘shape_factor’, ‘has_reconstructed’, ‘possible_species’, ‘has_props’, ‘theoretical’, ‘database_Ids’]</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Query CaTiO3 structures</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">mpr</span><span class="o">.</span><span class="n">materials</span><span class="o">.</span><span class="n">summary</span><span class="o">.</span><span class="n">search</span><span class="p">(</span>
+    <span class="n">formula</span><span class="o">=</span><span class="s2">&quot;CaTiO3&quot;</span><span class="p">,</span>
+    <span class="n">fields</span><span class="o">=</span><span class="p">[</span>
+        <span class="s2">&quot;material_id&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;formula_pretty&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;formation_energy_per_atom&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;band_gap&quot;</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+
+<span class="c1"># Convert results to DataFrame</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;material_id&quot;</span><span class="p">:</span> <span class="n">r</span><span class="o">.</span><span class="n">material_id</span><span class="p">,</span>
+        <span class="s2">&quot;formula&quot;</span><span class="p">:</span> <span class="n">r</span><span class="o">.</span><span class="n">formula_pretty</span><span class="p">,</span>
+        <span class="s2">&quot;formation_energy&quot;</span><span class="p">:</span> <span class="n">r</span><span class="o">.</span><span class="n">formation_energy_per_atom</span><span class="p">,</span>
+        <span class="s2">&quot;band_gap&quot;</span><span class="p">:</span> <span class="n">r</span><span class="o">.</span><span class="n">band_gap</span>
+    <span class="p">}</span>
+    <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">results</span>
+<span class="p">])</span>
+
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Retrieving SummaryDoc documents: 100%|██████████| 6/6 [00:00&lt;00:00, 51046.30it/s]
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>material_id</th>
+      <th>formula</th>
+      <th>formation_energy</th>
+      <th>band_gap</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>mp-3442</td>
+      <td>CaTiO3</td>
+      <td>-3.538691</td>
+      <td>2.2434</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>mp-754701</td>
+      <td>CaTiO3</td>
+      <td>-3.527734</td>
+      <td>3.5706</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>mp-5827</td>
+      <td>CaTiO3</td>
+      <td>-3.491620</td>
+      <td>1.8285</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>mp-4019</td>
+      <td>CaTiO3</td>
+      <td>-3.556087</td>
+      <td>2.3053</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>mp-1205364</td>
+      <td>CaTiO3</td>
+      <td>-3.544638</td>
+      <td>2.1378</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>mp-556003</td>
+      <td>CaTiO3</td>
+      <td>-3.544675</td>
+      <td>2.1586</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="step-4-querying-by-material-id">
+<h2>Step 4 - Querying by Material ID<a class="headerlink" href="#step-4-querying-by-material-id" title="Link to this heading">#</a></h2>
+<p>Suppose we want to retrieve detailed information for one specifi material. We will use its <strong>Materials Project ID</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Pick the first material ID from our query</span>
+<span class="n">material_id</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;material_id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Using material ID:&quot;</span><span class="p">,</span> <span class="n">material_id</span><span class="p">)</span>
+
+<span class="c1"># Fetch the structure directly</span>
+<span class="n">structure</span> <span class="o">=</span> <span class="n">mpr</span><span class="o">.</span><span class="n">get_structure_by_material_id</span><span class="p">(</span><span class="n">material_id</span><span class="p">)</span>
+<span class="n">structure</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Using material ID: mp-3442
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Retrieving MaterialsDoc documents: 100%|██████████| 1/1 [00:00&lt;00:00, 7557.30it/s]
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Structure Summary
+Lattice
+    abc : 5.441143344248945 5.441143344248945 5.441143344248945
+ angles : 120.84549073210634 120.84549073210634 88.54170096725916
+ volume : 112.41312515722095
+      A : np.float64(-2.68573015) np.float64(2.68573015) np.float64(3.89611961)
+      B : np.float64(2.68573015) np.float64(-2.68573015) np.float64(3.89611961)
+      C : np.float64(2.68573015) np.float64(2.68573015) np.float64(-3.89611961)
+    pbc : True True True
+PeriodicSite: Ca (2.686, 0.0, 1.948) [0.25, 0.75, 0.5]
+PeriodicSite: Ca (-2.22e-16, 2.686, 1.948) [0.75, 0.25, 0.5]
+PeriodicSite: Ti (0.0, 0.0, 3.896) [0.5, 0.5, -0.0]
+PeriodicSite: Ti (0.0, 0.0, 0.0) [0.0, -0.0, -0.0]
+PeriodicSite: O (-1.028, 1.658, 3.896) [0.8087, 0.3087, 0.1174]
+PeriodicSite: O (1.028, 1.658, 2.22e-16) [0.3087, 0.1913, 0.5]
+PeriodicSite: O (1.658, 1.028, 3.896) [0.6913, 0.8087, 0.5]
+PeriodicSite: O (3.713, 1.028, 7.015e-17) [0.1913, 0.6913, 0.8826]
+PeriodicSite: O (-1.11e-16, 1.11e-16, 5.844) [0.75, 0.75, -0.0]
+PeriodicSite: O (0.0, 0.0, 1.948) [0.25, 0.25, -0.0]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="step-5-downloading-the-structure-as-a-cif-file">
+<h2>Step 5 - Downloading the Structure as a <code class="docutils literal notranslate"><span class="pre">.cif</span></code> File<a class="headerlink" href="#step-5-downloading-the-structure-as-a-cif-file" title="Link to this heading">#</a></h2>
+<p>Once we have the structure, we can save it locally in <code class="docutils literal notranslate"><span class="pre">.cif</span></code> format, which could be use for visualization, just like the previous tutorial, or simulations.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Save CIF file</span>
+<span class="n">structure</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;CaTiO3_from_MP.cif&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;CIF file saved as &#39;CaTiO3_from_MP.cif&#39;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CIF file saved as &#39;CaTiO3_from_MP.cif&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="step-6-exploring-structure-properties">
+<h2>Step 6 - Exploring Structure Properties<a class="headerlink" href="#step-6-exploring-structure-properties" title="Link to this heading">#</a></h2>
+<p>Just as we learned on the previous tutorial, we can apply that knowledge and inspect the structure properties.</p>
+<ul class="simple">
+<li><p><strong>Lattice parameters</strong> (a, b, c)</p></li>
+<li><p><strong>Angles</strong> (α, β, γ)</p></li>
+<li><p><strong>Number of sites</strong></p></li>
+<li><p><strong>Atomic species</strong></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Lattice parameters</span>
+<span class="n">lattice</span> <span class="o">=</span> <span class="n">structure</span><span class="o">.</span><span class="n">lattice</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Lattice parameters (Å):&quot;</span><span class="p">,</span> <span class="n">lattice</span><span class="o">.</span><span class="n">abc</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Lattice angles (°):&quot;</span><span class="p">,</span> <span class="n">lattice</span><span class="o">.</span><span class="n">angles</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of sites:&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">structure</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Atomic species:&quot;</span><span class="p">,</span> <span class="n">structure</span><span class="o">.</span><span class="n">species</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Lattice parameters (Å): (5.441143344248945, 5.441143344248945, 5.441143344248945)
+Lattice angles (°): (120.84549073210634, 120.84549073210634, 88.54170096725916)
+Number of sites: 10
+Atomic species: [Element Ca, Element Ca, Element Ti, Element Ti, Element O, Element O, Element O, Element O, Element O, Element O]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="step-7-optional-teaser-structure-manipulation">
+<h2>Step 7 (optional) - Teaser: Structure Manipulation<a class="headerlink" href="#step-7-optional-teaser-structure-manipulation" title="Link to this heading">#</a></h2>
+<p>In materials science, it’s often necessary to modify atomic structures to simulate real-world phenomena or design new materials. Two common manipulations are:</p>
+<ul class="simple">
+<li><p><strong>Vacancy creation</strong> → Removing an atom from the structure</p>
+<ul>
+<li><p>Useful for studying defects, diffusion, and electronic properties.</p></li>
+</ul>
+</li>
+<li><p><strong>Substitution</strong> → Replacing one atom with a different element</p>
+<ul>
+<li><p>Used to model doping, alloying, and tuning material properties like band gaps or magnetism.</p></li>
+</ul>
+</li>
+</ul>
+<p>These techniques allow researchers to predict how structural modifications influence material behavior, helping design more efficient semiconductors, batteries, catalysts, and more.</p>
+<section id="code-example-creating-vacancies-and-substitutions">
+<h3>Code Example: Creating Vacancies and Substitutions<a class="headerlink" href="#code-example-creating-vacancies-and-substitutions" title="Link to this heading">#</a></h3>
+<p>Pymatgen lets us manipulate structures in powerful ways.<br />
+Here’s a <strong>quick teaser</strong>:</p>
+<ul class="simple">
+<li><p>Create a <strong>vacancy</strong> by removing an atom</p></li>
+<li><p>Substitute one atom for another</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Original structure:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">structure</span><span class="p">)</span>
+
+<span class="c1"># --- 1. Creating a vacancy ---</span>
+<span class="c1"># Let&#39;s remove the first calcium atom</span>
+<span class="n">vacancy_structure</span> <span class="o">=</span> <span class="n">structure</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">vacancy_structure</span><span class="o">.</span><span class="n">remove_sites</span><span class="p">([</span><span class="mi">0</span><span class="p">])</span>  <span class="c1"># Index of the atom to remove</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Structure after creating a Ca vacancy:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">vacancy_structure</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Original structure:
+Full Formula (Ca2 Ti2 O6)
+Reduced Formula: CaTiO3
+abc   :   5.441143   5.441143   5.441143
+angles: 120.845491 120.845491  88.541701
+pbc   :       True       True       True
+Sites (10)
+  #  SP           a          b          c    magmom
+---  ----  --------  ---------  ---------  --------
+  0  Ca    0.25       0.75       0.5             -0
+  1  Ca    0.75       0.25       0.5             -0
+  2  Ti    0.5        0.5       -0               -0
+  3  Ti    0         -0         -0               -0
+  4  O     0.808697   0.308697   0.117394         0
+  5  O     0.308697   0.191303   0.5              0
+  6  O     0.691303   0.808697   0.5              0
+  7  O     0.191303   0.691303   0.882606         0
+  8  O     0.75       0.75      -0               -0
+  9  O     0.25       0.25      -0               -0
+
+Structure after creating a Ca vacancy:
+Full Formula (Ca1 Ti2 O6)
+Reduced Formula: CaTi2O6
+abc   :   5.441143   5.441143   5.441143
+angles: 120.845491 120.845491  88.541701
+pbc   :       True       True       True
+Sites (9)
+  #  SP           a          b          c    magmom
+---  ----  --------  ---------  ---------  --------
+  0  Ca    0.75       0.25       0.5             -0
+  1  Ti    0.5        0.5       -0               -0
+  2  Ti    0         -0         -0               -0
+  3  O     0.808697   0.308697   0.117394         0
+  4  O     0.308697   0.191303   0.5              0
+  5  O     0.691303   0.808697   0.5              0
+  6  O     0.191303   0.691303   0.882606         0
+  7  O     0.75       0.75      -0               -0
+  8  O     0.25       0.25      -0               -0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pymatgen.transformations.standard_transformations</span><span class="w"> </span><span class="kn">import</span> <span class="n">SubstitutionTransformation</span>
+
+<span class="c1"># Substitute Ti with Zr</span>
+<span class="n">transformation</span> <span class="o">=</span> <span class="n">SubstitutionTransformation</span><span class="p">({</span><span class="s2">&quot;Ti&quot;</span><span class="p">:</span> <span class="s2">&quot;Zr&quot;</span><span class="p">})</span>
+<span class="n">substituted_structure</span> <span class="o">=</span> <span class="n">transformation</span><span class="o">.</span><span class="n">apply_transformation</span><span class="p">(</span><span class="n">structure</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Original species:&quot;</span><span class="p">,</span> <span class="n">structure</span><span class="o">.</span><span class="n">species</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;After substitution:&quot;</span><span class="p">,</span> <span class="n">substituted_structure</span><span class="o">.</span><span class="n">species</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Original species: [Element Ca, Element Ca, Element Ti, Element Ti, Element O, Element O, Element O, Element O, Element O, Element O]
+After substitution: [Element Ca, Element Ca, Element Zr, Element Zr, Element O, Element O, Element O, Element O, Element O, Element O]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="step-8-summary">
+<h2>Step 8 - Summary<a class="headerlink" href="#step-8-summary" title="Link to this heading">#</a></h2>
+<p>In this tutorial, we learned how to:</p>
+<ul class="simple">
+<li><p>Set up and authenticate with the <strong>Materials Project API</strong></p></li>
+<li><p>Query materials by formula, elements, or material ID</p></li>
+<li><p>Retrieve properties like formation energy, band gap, and crystal system</p></li>
+<li><p>Save structures as <code class="docutils literal notranslate"><span class="pre">.cif</span></code> files</p></li>
+<li><p>Peek into <strong>pymatgen’s structure manipulation capabilities</strong></p></li>
+</ul>
+<hr class="docutils" />
+<section id="next-steps">
+<h3>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading">#</a></h3>
+<p>In the next tutorial, we’ll:</p>
+<ul class="simple">
+<li><p>Perform <strong>data mining</strong> using Materials Project queries</p></li>
+<li><p>Analyze <strong>large sets of materials</strong> to extract trends and correlations</p></li>
+<li><p>Use plots and statistics to gain insights into <strong>materials properties</strong></p></li>
+</ul>
+<hr class="docutils" />
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "vmiranda4/materials-data-mining",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./querying"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../visualization/structure_visualization.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Visualizing Crystal Structures with Pymatgen and ASE</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-import-necessary-libraries">Step 1 - Import Necessary Libraries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-setting-up-the-api-key">Step 2 - Setting Up the API Key</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-querying-by-chemical-formula">Step 3 - Querying by Chemical Formula</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-querying-by-material-id">Step 4 - Querying by Material ID</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-downloading-the-structure-as-a-cif-file">Step 5 - Downloading the Structure as a <code class="docutils literal notranslate"><span class="pre">.cif</span></code> File</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-6-exploring-structure-properties">Step 6 - Exploring Structure Properties</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-7-optional-teaser-structure-manipulation">Step 7 (optional) - Teaser: Structure Manipulation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#code-example-creating-vacancies-and-substitutions">Code Example: Creating Vacancies and Substitutions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-8-summary">Step 8 - Summary</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">Next Steps</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Valentina Miranda
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
