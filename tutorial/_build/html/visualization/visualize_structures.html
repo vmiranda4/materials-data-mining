@@ -1,0 +1,865 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Visualizing Crystal Structures with Pymatgen and Crystal Toolkit &#8212; Materials Data Mining with Python</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'visualization/visualize_structures';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Materials Data Mining with Python - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Materials Data Mining with Python - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../setup/environment_setup.html">Environment Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../materials_project/exploring_materials_project.html">Meeting Materials Project</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/vmiranda4/materials-data-mining/master?urlpath=tree/visualization/visualize_structures.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/vmiranda4/materials-data-mining/blob/master/visualization/visualize_structures.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/vmiranda4/materials-data-mining" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/vmiranda4/materials-data-mining/issues/new?title=Issue%20on%20page%20%2Fvisualization/visualize_structures.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/visualization/visualize_structures.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Visualizing Crystal Structures with Pymatgen and Crystal Toolkit</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-setting-up-and-opening-the-structure">Step 1 - Setting up and Opening the Structure</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-does-importing-a-library-mean">What does “importing a library” mean?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-a-cif-file">Loading a <code class="docutils literal notranslate"><span class="pre">.cif</span></code> File</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-exploring-structure-properites">Step 2 - Exploring Structure Properites</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-visualizing-the-structure">Step 3 - Visualizing the Structure</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interactive-visualization-with-crystal-toolkit">Interactive Visualization with Crystal Toolkit</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="visualizing-crystal-structures-with-pymatgen-and-crystal-toolkit">
+<h1>Visualizing Crystal Structures with Pymatgen and Crystal Toolkit<a class="headerlink" href="#visualizing-crystal-structures-with-pymatgen-and-crystal-toolkit" title="Link to this heading">#</a></h1>
+<p>In this tutorial, we will learn how to visualize and explore crystal structures using two powerful Python-based tools:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://pymatgen.org/">Pymatgen</a>: a Python library for materials analysis.</p></li>
+<li><p><a class="reference external" href="https://docs.crystaltoolkit.org/">Crystal Toolkit</a>: an interactive visualization tool integrated with pymatgen,</p></li>
+</ul>
+<p>We will start from the <code class="docutils literal notranslate"><span class="pre">.cif</span></code> file we downloaded in the previous tutorial from Materials Project, load it into Python, inspect its properties, and visualize it interactively.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This tutorial assumes you have already completed the previous step where we downloaded a <code class="docutils literal notranslate"><span class="pre">.cif</span></code> file from Materials Project. If not, please revisit the tutorial: <a class="reference internal" href="../materials_project/exploring_materials_project.html"><span class="std std-doc">Exploring Materials Project</span></a></p>
+</div>
+<section id="step-1-setting-up-and-opening-the-structure">
+<h2>Step 1 - Setting up and Opening the Structure<a class="headerlink" href="#step-1-setting-up-and-opening-the-structure" title="Link to this heading">#</a></h2>
+<p>Before working with crystal data, we need to use Python libraries that help us read and analize it. One such library is <strong>pymatgen</strong>.</p>
+<section id="what-does-importing-a-library-mean">
+<h3>What does “importing a library” mean?<a class="headerlink" href="#what-does-importing-a-library-mean" title="Link to this heading">#</a></h3>
+<p>In Python, a library is a collection of pre-written code that provides useful functions. Instead of writing everything from scratch, we import a library and reuse its tools.</p>
+<p>For this tutorial, we will import the <code class="docutils literal notranslate"><span class="pre">Structure</span></code> class from pymatgen, which let us work directly with crystallographic structures</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pymatgen.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">Structure</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we can use the <code class="docutils literal notranslate"><span class="pre">Structure</span></code> class to open our <code class="docutils literal notranslate"><span class="pre">.cif</span></code> file.</p>
+</section>
+<section id="loading-a-cif-file">
+<h3>Loading a <code class="docutils literal notranslate"><span class="pre">.cif</span></code> File<a class="headerlink" href="#loading-a-cif-file" title="Link to this heading">#</a></h3>
+<p>A <code class="docutils literal notranslate"><span class="pre">.cif</span></code> file (Crystallographic Information File) contains:</p>
+<ul class="simple">
+<li><p>The shape and size of the unit cell (lattice parameters)</p></li>
+<li><p>The atomic positions inside the crystal</p></li>
+<li><p>Symmetry information and space group</p></li>
+</ul>
+<p>Let us load the <code class="docutils literal notranslate"><span class="pre">.cif</span></code> file into Python:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Replace this filename with your downloaded CIF file if different</span>
+<span class="n">structure</span> <span class="o">=</span> <span class="n">Structure</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="s2">&quot;CaTiO3.cif&quot;</span><span class="p">)</span>
+
+<span class="c1"># Display basic structure info</span>
+<span class="n">structure</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Structure Summary
+Lattice
+    abc : 5.37204886 5.46279649 7.63635962
+ angles : 90.0 90.0 90.0
+ volume : 224.09973769300066
+      A : np.float64(5.37204886) np.float64(0.0) np.float64(3.2894312206310936e-16)
+      B : np.float64(8.784846766143028e-16) np.float64(5.46279649) np.float64(3.344998117935948e-16)
+      C : np.float64(0.0) np.float64(0.0) np.float64(7.63635962)
+    pbc : True True True
+PeriodicSite: Ca0 (Ca2+) (2.735, 2.963, 5.727) [0.5091, 0.5424, 0.75]
+PeriodicSite: Ca1 (Ca2+) (2.637, 2.5, 1.909) [0.4909, 0.4576, 0.25]
+PeriodicSite: Ca2 (Ca2+) (5.323, 0.2316, 5.727) [0.9909, 0.0424, 0.75]
+PeriodicSite: Ca3 (Ca2+) (0.04871, 5.231, 1.909) [0.009067, 0.9576, 0.25]
+PeriodicSite: Ti4 (Ti4+) (4.392e-16, 2.731, 3.818) [0.0, 0.5, 0.5]
+PeriodicSite: Ti5 (Ti4+) (4.392e-16, 2.731, 1.672e-16) [0.0, 0.5, 0.0]
+PeriodicSite: Ti6 (Ti4+) (2.686, 0.0, 3.818) [0.5, 0.0, 0.5]
+PeriodicSite: Ti7 (Ti4+) (2.686, 0.0, 1.645e-16) [0.5, 0.0, 0.0]
+PeriodicSite: O8 (O2-) (0.4125, 2.629, 5.727) [0.07678, 0.4813, 0.75]
+PeriodicSite: O9 (O2-) (4.96, 2.833, 1.909) [0.9232, 0.5187, 0.25]
+PeriodicSite: O10 (O2-) (2.274, 5.361, 5.727) [0.4232, 0.9813, 0.75]
+PeriodicSite: O11 (O2-) (3.098, 0.102, 1.909) [0.5768, 0.01867, 0.25]
+PeriodicSite: O12 (O2-) (4.245, 4.313, 7.33) [0.7903, 0.7896, 0.9598]
+PeriodicSite: O13 (O2-) (1.127, 1.149, 3.512) [0.2097, 0.2104, 0.4598]
+PeriodicSite: O14 (O2-) (1.127, 1.149, 0.3067) [0.2097, 0.2104, 0.04016]
+PeriodicSite: O15 (O2-) (4.245, 4.313, 4.125) [0.7903, 0.7896, 0.5402]
+PeriodicSite: O16 (O2-) (3.813, 1.582, 7.33) [0.7097, 0.2896, 0.9598]
+PeriodicSite: O17 (O2-) (1.559, 3.881, 3.512) [0.2903, 0.7104, 0.4598]
+PeriodicSite: O18 (O2-) (1.559, 3.881, 0.3067) [0.2903, 0.7104, 0.04016]
+PeriodicSite: O19 (O2-) (3.813, 1.582, 4.125) [0.7097, 0.2896, 0.5402]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Think of this step as <strong>opening a 3D model</strong> of your material in Python.<br />
+We’re now ready to explore its properties.</p>
+</div>
+</section>
+</section>
+<section id="step-2-exploring-structure-properites">
+<h2>Step 2 - Exploring Structure Properites<a class="headerlink" href="#step-2-exploring-structure-properites" title="Link to this heading">#</a></h2>
+<p>Once we have the structure loaded, we can ask Python to give us details about it. Let us check the formula, lattice parameters, symmetry, and atomic positions.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Formula:&quot;</span><span class="p">,</span> <span class="n">structure</span><span class="o">.</span><span class="n">formula</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Lattice parameters:&quot;</span><span class="p">,</span> <span class="n">structure</span><span class="o">.</span><span class="n">lattice</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Volume:&quot;</span><span class="p">,</span> <span class="n">structure</span><span class="o">.</span><span class="n">volume</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Density:&quot;</span><span class="p">,</span> <span class="n">structure</span><span class="o">.</span><span class="n">density</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Space group:&quot;</span><span class="p">,</span> <span class="n">structure</span><span class="o">.</span><span class="n">get_space_group_info</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of atomic sites:&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">structure</span><span class="o">.</span><span class="n">sites</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Fractional atomic coordinates:&quot;</span><span class="p">)</span>
+<span class="n">structure</span><span class="o">.</span><span class="n">frac_coords</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Formula: Ca4 Ti4 O12
+Lattice parameters: 5.372049 0.000000 0.000000
+0.000000 5.462796 0.000000
+0.000000 0.000000 7.636360
+Volume: 224.09973769300066
+Density: 4.029259419540245 g cm^-3
+Space group: (&#39;Pnma&#39;, 62)
+Number of atomic sites: 20
+
+Fractional atomic coordinates:
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.50906691, 0.54239755, 0.75      ],
+       [0.49093309, 0.45760245, 0.25      ],
+       [0.99093309, 0.04239755, 0.75      ],
+       [0.00906691, 0.95760245, 0.25      ],
+       [0.        , 0.5       , 0.5       ],
+       [0.        , 0.5       , 0.        ],
+       [0.5       , 0.        , 0.5       ],
+       [0.5       , 0.        , 0.        ],
+       [0.07678111, 0.48132762, 0.75      ],
+       [0.92321889, 0.51867238, 0.25      ],
+       [0.42321889, 0.98132762, 0.75      ],
+       [0.57678111, 0.01867238, 0.25      ],
+       [0.79029372, 0.78961378, 0.95984128],
+       [0.20970628, 0.21038622, 0.45984128],
+       [0.20970628, 0.21038622, 0.04015872],
+       [0.79029372, 0.78961378, 0.54015872],
+       [0.70970628, 0.28961378, 0.95984128],
+       [0.29029372, 0.71038622, 0.45984128],
+       [0.29029372, 0.71038622, 0.04015872],
+       [0.70970628, 0.28961378, 0.54015872]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>These properties are essential in materials science because they define <strong>how atoms are arranged</strong> in the material, which directly affects its physical and chemical properties.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">structure</span><span class="o">.</span><span class="n">volume</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>224.09973769300066
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">structure</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Full Formula (Ca4 Ti4 O12)
+Reduced Formula: CaTiO3
+abc   :   5.372049   5.462796   7.636360
+angles:  90.000000  90.000000  90.000000
+pbc   :       True       True       True
+Sites (20)
+  #  SP           a         b         c
+---  ----  --------  --------  --------
+  0  Ca2+  0.509067  0.542398  0.75
+  1  Ca2+  0.490933  0.457602  0.25
+  2  Ca2+  0.990933  0.042398  0.75
+  3  Ca2+  0.009067  0.957602  0.25
+  4  Ti4+  0         0.5       0.5
+  5  Ti4+  0         0.5       0
+  6  Ti4+  0.5       0         0.5
+  7  Ti4+  0.5       0         0
+  8  O2-   0.076781  0.481328  0.75
+  9  O2-   0.923219  0.518672  0.25
+ 10  O2-   0.423219  0.981328  0.75
+ 11  O2-   0.576781  0.018672  0.25
+ 12  O2-   0.790294  0.789614  0.959841
+ 13  O2-   0.209706  0.210386  0.459841
+ 14  O2-   0.209706  0.210386  0.040159
+ 15  O2-   0.790294  0.789614  0.540159
+ 16  O2-   0.709706  0.289614  0.959841
+ 17  O2-   0.290294  0.710386  0.459841
+ 18  O2-   0.290294  0.710386  0.040159
+ 19  O2-   0.709706  0.289614  0.540159
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="step-3-visualizing-the-structure">
+<h2>Step 3 - Visualizing the Structure<a class="headerlink" href="#step-3-visualizing-the-structure" title="Link to this heading">#</a></h2>
+<p>Seeing numbers is useful, but visualizing the structure makes it easier to understand</p>
+<section id="interactive-visualization-with-crystal-toolkit">
+<h3>Interactive Visualization with Crystal Toolkit<a class="headerlink" href="#interactive-visualization-with-crystal-toolkit" title="Link to this heading">#</a></h3>
+<p>Crystal Toolkit allows us to create an interactive 3D visualization of the structure directly inside the Jupyter notebook.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pymatgen.core.structure</span><span class="w"> </span><span class="kn">import</span> <span class="n">Structure</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">crystal_toolkit</span>
+
+<span class="c1"># Load the CIF file</span>
+<span class="n">CaTiO3</span> <span class="o">=</span> <span class="n">Structure</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="s2">&quot;CaTiO3.cif&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/paladin/anaconda3/envs/matdata/lib/python3.11/site-packages/tqdm/auto.py:21: TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See https://ipywidgets.readthedocs.io/en/stable/user_install.html
+  from .autonotebook import tqdm as notebook_tqdm
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">CaTiO3</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Address already in use
+Port 8884 is in use by another program. Either identify and stop that program, or start the server with a different port.
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="n">An</span> <span class="n">exception</span> <span class="n">has</span> <span class="n">occurred</span><span class="p">,</span> <span class="n">use</span> <span class="o">%</span><span class="k">tb</span> to see the full traceback.
+
+<span class="ne">SystemExit</span>: 1
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/paladin/anaconda3/envs/matdata/lib/python3.11/site-packages/IPython/core/interactiveshell.py:3707: UserWarning:
+
+To exit: use &#39;exit&#39;, &#39;quit&#39;, or Ctrl-D.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">CaTiO3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Full Formula (Ca4 Ti4 O12)
+Reduced Formula: CaTiO3
+abc   :   5.372049   5.462796   7.636360
+angles:  90.000000  90.000000  90.000000
+pbc   :       True       True       True
+Sites (20)
+  #  SP           a         b         c
+---  ----  --------  --------  --------
+  0  Ca2+  0.509067  0.542398  0.75
+  1  Ca2+  0.490933  0.457602  0.25
+  2  Ca2+  0.990933  0.042398  0.75
+  3  Ca2+  0.009067  0.957602  0.25
+  4  Ti4+  0         0.5       0.5
+  5  Ti4+  0         0.5       0
+  6  Ti4+  0.5       0         0.5
+  7  Ti4+  0.5       0         0
+  8  O2-   0.076781  0.481328  0.75
+  9  O2-   0.923219  0.518672  0.25
+ 10  O2-   0.423219  0.981328  0.75
+ 11  O2-   0.576781  0.018672  0.25
+ 12  O2-   0.790294  0.789614  0.959841
+ 13  O2-   0.209706  0.210386  0.459841
+ 14  O2-   0.209706  0.210386  0.040159
+ 15  O2-   0.790294  0.789614  0.540159
+ 16  O2-   0.709706  0.289614  0.959841
+ 17  O2-   0.290294  0.710386  0.459841
+ 18  O2-   0.290294  0.710386  0.040159
+ 19  O2-   0.709706  0.289614  0.540159
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "vmiranda4/materials-data-mining",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./visualization"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-setting-up-and-opening-the-structure">Step 1 - Setting up and Opening the Structure</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-does-importing-a-library-mean">What does “importing a library” mean?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-a-cif-file">Loading a <code class="docutils literal notranslate"><span class="pre">.cif</span></code> File</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-exploring-structure-properites">Step 2 - Exploring Structure Properites</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-visualizing-the-structure">Step 3 - Visualizing the Structure</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interactive-visualization-with-crystal-toolkit">Interactive Visualization with Crystal Toolkit</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Valentina Miranda
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
