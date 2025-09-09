@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Welcome to your Jupyter Book &#8212; Materials Data Mining with Python</title>
+    <title>Accelerating Materials Discovery with Data-Driven Tools &#8212; Materials Data Mining with Python</title>
   
   
   
@@ -178,7 +178,7 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1 current active">
                 <a class="reference internal" href="#">
-                    Welcome to your Jupyter Book
+                    Accelerating Materials Discovery with Data-Driven Tools
                 </a>
             </li>
         </ul>
@@ -188,6 +188,9 @@
 <li class="toctree-l1"><a class="reference internal" href="materials_project/exploring_materials_project.html">Meeting Materials Project</a></li>
 <li class="toctree-l1"><a class="reference internal" href="visualization/structure_visualization.html">Visualizing Crystal Structures with Pymatgen and ASE</a></li>
 <li class="toctree-l1"><a class="reference internal" href="querying/querying_materials.html">Querying Materials Data from the Materials Project using Pymatgen</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="data_mining/materials_scanning.html">Data Mining Materials with pymatgen and matminer</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="simple">
+</ul>
+</details></li>
 </ul>
 
     </div>
@@ -360,7 +363,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -371,11 +376,26 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Welcome to your Jupyter Book</h1>
+    <h1>Accelerating Materials Discovery with Data-Driven Tools</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-this-project-matters">Why This Project Matters</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-youll-learn">What You’ll Learn</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tutorial-roadmap">Tutorial Roadmap</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#who-is-this-for">Who Is This For?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites"><strong>Prerequisites</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started">Getting Started</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -385,13 +405,92 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="welcome-to-your-jupyter-book">
-<h1>Welcome to your Jupyter Book<a class="headerlink" href="#welcome-to-your-jupyter-book" title="Link to this heading">#</a></h1>
-<p>This is a small sample book to give you a feel for how book content is
-structured.
-It shows off a few of the major file types, as well as some sample content.
-It does not go in-depth into any particular topic - check out <a class="reference external" href="https://jupyterbook.org">the Jupyter Book documentation</a> for more information.</p>
-<p>Check out the content pages bundled with this sample book to see more.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="accelerating-materials-discovery-with-data-driven-tools">
+<h1>Accelerating Materials Discovery with Data-Driven Tools<a class="headerlink" href="#accelerating-materials-discovery-with-data-driven-tools" title="Link to this heading">#</a></h1>
+<blockquote>
+<div><p><strong>Harness the power of data science to explore, analyze, and visualize materials properties like never before.</strong><br />
+Using cutting-edge tools like <strong>pymatgen</strong>, <strong>ASE</strong>, and <strong>matminer</strong>, this tutorial series will guide you step by step through the process of <strong>querying</strong>, <strong>visualizing</strong>, and <strong>analyzing</strong> materials data from world-class databases.</p>
+</div></blockquote>
+<hr class="docutils" />
+<section id="why-this-project-matters">
+<h2>Why This Project Matters<a class="headerlink" href="#why-this-project-matters" title="Link to this heading">#</a></h2>
+<p>Modern <strong>materials science</strong> is undergoing a <strong>data revolution</strong>. Thanks to advances in <strong>high-throughput density functional theory (DFT)</strong>, thousands of materials are simulated and characterized daily, resulting in <strong>massive datasets</strong> that hold the key to discovering new functional compounds.</p>
+<p>However, extracting insights from these datasets is <strong>not trivial</strong>. That’s where tools like:</p>
+<ul class="simple">
+<li><p><strong><a class="reference external" href="https://materialsproject.org/">Materials Project</a></strong> → a comprehensive database with millions of computed materials properties.</p></li>
+<li><p><strong><a class="reference external" href="https://pymatgen.org/">pymatgen</a></strong> → a Python library for analyzing structures and properties.</p></li>
+<li><p><strong><a class="reference external" href="https://wiki.fysik.dtu.dk/ase/">ASE</a></strong> → for interactive 3D visualization of atomic structures.</p></li>
+<li><p><strong><a class="reference external" href="https://hackingmaterials.lbl.gov/matminer/">matminer</a></strong> → for feature extraction, dataset access, and materials data mining.</p></li>
+</ul>
+<p>These tools help researchers, engineers, and students <strong>accelerate materials discovery</strong> for technologies like <strong>semiconductors</strong>, <strong>photovoltaics</strong>, <strong>energy storage</strong>, and <strong>catalysis</strong>.</p>
+</section>
+<hr class="docutils" />
+<section id="what-youll-learn">
+<h2>What You’ll Learn<a class="headerlink" href="#what-youll-learn" title="Link to this heading">#</a></h2>
+<p>By following this tutorial series, you’ll learn how to:</p>
+<ul class="simple">
+<li><p>✅ <strong>Access</strong> and query materials properties using the <strong>Materials Project API</strong>.</p></li>
+<li><p>✅ <strong>Visualize</strong> atomic structures in 3D using <strong>pymatgen</strong> and <strong>ASE</strong>.</p></li>
+<li><p>✅ <strong>Analyze</strong> and compare materials based on structural, electronic, and thermodynamic properties.</p></li>
+<li><p>✅ <strong>Mine data</strong> from curated datasets using <strong>matminer</strong>.</p></li>
+<li><p>✅ Gain practical, <strong>hands-on experience</strong> with data-driven materials science.</p></li>
+</ul>
+<p>Each tutorial is designed to be <strong>beginner-friendly</strong> yet <strong>practically useful</strong>, combining <strong>clear explanations</strong> with <strong>real-world examples</strong>.</p>
+</section>
+<hr class="docutils" />
+<section id="tutorial-roadmap">
+<h2>Tutorial Roadmap<a class="headerlink" href="#tutorial-roadmap" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Tutorial</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Tools Covered</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>1. Accessing Materials Data</strong></p></td>
+<td><p>Learn to query the <strong>Materials Project</strong> database and retrieve materials properties for analysis.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">pymatgen</span></code>, Materials Project API</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>2. Visualizing Atomic Structures</strong></p></td>
+<td><p>Explore and visualize 3D structures interactively using <strong>ASE</strong> and <strong>pymatgen</strong>.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ASE</span></code>, <code class="docutils literal notranslate"><span class="pre">pymatgen</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>3. Querying and Comparing Materials</strong></p></td>
+<td><p>Perform filtered searches and compare candidate materials based on their properties.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">pymatgen</span></code>, <code class="docutils literal notranslate"><span class="pre">pandas</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>4. Data Mining with Matminer</strong></p></td>
+<td><p>Work with curated datasets, perform filtering, feature extraction, and statistical analysis.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">matminer</span></code>, <code class="docutils literal notranslate"><span class="pre">seaborn</span></code>, <code class="docutils literal notranslate"><span class="pre">pandas</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Each tutorial builds on the previous one, so we recommend working through them in order.</p>
+</section>
+<hr class="docutils" />
+<section id="who-is-this-for">
+<h2>Who Is This For?<a class="headerlink" href="#who-is-this-for" title="Link to this heading">#</a></h2>
+<p>This tutorial series is designed for:</p>
+<ul class="simple">
+<li><p><strong>Students</strong> in materials science, chemistry, and physics.</p></li>
+<li><p><strong>Researchers</strong> exploring new compounds and their properties.</p></li>
+<li><p><strong>Engineers</strong> seeking to integrate data-driven workflows into R&amp;D.</p></li>
+<li><p><strong>Developers</strong> curious about materials informatics.</p></li>
+</ul>
+<section id="prerequisites">
+<h3><strong>Prerequisites</strong><a class="headerlink" href="#prerequisites" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Basic knowledge of <strong>Python</strong> and <strong>Jupyter Notebooks</strong>.</p></li>
+<li><p>Curiosity and enthusiasm for <strong>materials science</strong>.</p></li>
+<li><p>No prior experience with DFT, databases, or visualization tools required — we’ll guide you through it!</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="getting-started">
+<h2>Getting Started<a class="headerlink" href="#getting-started" title="Link to this heading">#</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="tools/tools_overview.html">Overview of Tools and Resources</a></li>
@@ -399,8 +498,10 @@ It does not go in-depth into any particular topic - check out <a class="referenc
 <li class="toctree-l1"><a class="reference internal" href="materials_project/exploring_materials_project.html">Meeting Materials Project</a></li>
 <li class="toctree-l1"><a class="reference internal" href="visualization/structure_visualization.html">Visualizing Crystal Structures with Pymatgen and ASE</a></li>
 <li class="toctree-l1"><a class="reference internal" href="querying/querying_materials.html">Querying Materials Data from the Materials Project using Pymatgen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_mining/materials_scanning.html">Data Mining Materials with pymatgen and matminer</a></li>
 </ul>
 </div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -448,6 +549,28 @@ It does not go in-depth into any particular topic - check out <a class="referenc
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-this-project-matters">Why This Project Matters</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-youll-learn">What You’ll Learn</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tutorial-roadmap">Tutorial Roadmap</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#who-is-this-for">Who Is This For?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites"><strong>Prerequisites</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started">Getting Started</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

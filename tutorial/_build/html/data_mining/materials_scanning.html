@@ -1,0 +1,922 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Data Mining Materials with pymatgen and matminer &#8212; Materials Data Mining with Python</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'data_mining/materials_scanning';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Querying Materials Data from the Materials Project using Pymatgen" href="../querying/querying_materials.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Materials Data Mining with Python - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Materials Data Mining with Python - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Accelerating Materials Discovery with Data-Driven Tools
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../tools/tools_overview.html">Overview of Tools and Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../setup/environment_setup.html">Environment Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../materials_project/exploring_materials_project.html">Meeting Materials Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../visualization/structure_visualization.html">Visualizing Crystal Structures with Pymatgen and ASE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../querying/querying_materials.html">Querying Materials Data from the Materials Project using Pymatgen</a></li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Data Mining Materials with pymatgen and matminer</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="simple">
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/vmiranda4/materials-data-mining/master?urlpath=tree/data_mining/materials_scanning.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/vmiranda4/materials-data-mining/blob/master/data_mining/materials_scanning.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/vmiranda4/materials-data-mining" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/vmiranda4/materials-data-mining/issues/new?title=Issue%20on%20page%20%2Fdata_mining/materials_scanning.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/data_mining/materials_scanning.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Data Mining Materials with pymatgen and matminer</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-introduction">Step 1 - Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-setup-and-installation">Step 2 - Setup and Installation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-defining-th-search-parameters">Step 3 - Defining th Search Parameters</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-querying-the-materials-project">Step 4 - Querying the Materials Project</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-exploring-the-results">Step 5 - Exploring the Results</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-6-using-matminer-datasets">Step 6 - Using Matminer Datasets</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="data-mining-materials-with-pymatgen-and-matminer">
+<h1>Data Mining Materials with pymatgen and matminer<a class="headerlink" href="#data-mining-materials-with-pymatgen-and-matminer" title="Link to this heading">#</a></h1>
+<section id="step-1-introduction">
+<h2>Step 1 - Introduction<a class="headerlink" href="#step-1-introduction" title="Link to this heading">#</a></h2>
+<p>Materials science is entering the data-driven era. With the rise of high-throughput density functional theory (DFT) calculations, massive datasets containing structural, electronic, and thermodynamic properties of materials are now publicly available. However, having big data is not enough — we need tools to:</p>
+<ol class="arabic simple">
+<li><p>Access this data programmatically.</p></li>
+<li><p>Process, clean, and organize the data.</p></li>
+<li><p>Extract useful features (“descriptors”) that represent material properties.</p></li>
+<li><p>Use these features for machine learning models and materials discovery.</p></li>
+</ol>
+<p>In this tutorial, we will go beyond simple querying and learn how to search for new semiconducting materials that are similar to a known compound.</p>
+<p>We will start from the material that has been used in previous tutorials, <span class="math notranslate nohighlight">\(\text{CaTiO}_3\)</span>, a perovskite oxide, and follow this process:</p>
+<ol class="arabic simple">
+<li><p>Choose a neighboring transition metal to substitute for Ti — we will take Zr.</p></li>
+<li><p>Use band gap constraints to ensure the candidates are semiconductors.</p></li>
+<li><p>Search for materials with similar composition using:</p>
+<ul class="simple">
+<li><p>Pymatgen + Materials Project</p></li>
+<li><p>Matminer datasets</p></li>
+</ul>
+</li>
+<li><p>Compare results and discuss possible applications.</p></li>
+</ol>
+</section>
+<section id="step-2-setup-and-installation">
+<h2>Step 2 - Setup and Installation<a class="headerlink" href="#step-2-setup-and-installation" title="Link to this heading">#</a></h2>
+<p>First, make sure you have the required libraries installed:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+
+<span class="c1">#from pymatgen.ext.matproj import MPRester</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mp_api.client</span><span class="w"> </span><span class="kn">import</span> <span class="n">MPRester</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matminer.datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/paladin/anaconda3/envs/matdata/lib/python3.11/site-packages/tqdm/auto.py:21: TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See https://ipywidgets.readthedocs.io/en/stable/user_install.html
+  from .autonotebook import tqdm as notebook_tqdm
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="step-3-defining-th-search-parameters">
+<h2>Step 3 - Defining th Search Parameters<a class="headerlink" href="#step-3-defining-th-search-parameters" title="Link to this heading">#</a></h2>
+<p>Our base compound is <span class="math notranslate nohighlight">\(\text{CaTiO}_3\)</span>. Suppose that we have special interest in the properties of this compound, but we want to look for alternatives to <span class="math notranslate nohighlight">\(\text{Ti}\)</span> because it might not be that accessible, or to look if any similar compound can show even better properties for an specific application.</p>
+<p>In order to find a neighboring transition metal, we check the periodic table and see that <span class="math notranslate nohighlight">\(\text{V}\)</span> (Vanadium) is a Titanium neighbor.</p>
+<p>Additionally, we also want to narrow our search because our interest is semiconductors, which have a band gap gange of around <span class="math notranslate nohighlight">\(1.1\)</span> to <span class="math notranslate nohighlight">\(3.2 \text{eV}\)</span>.</p>
+<p>In summary, our search parameters:</p>
+<ul class="simple">
+<li><p>Base compound: CaTiO₃</p></li>
+<li><p>Neighboring transition metal: Zr (Titanium neighbor).</p></li>
+<li><p>Band gap range: 1.1 – 3.2 eV (we want semiconductors).</p></li>
+<li><p>Chemically similar systems: Calcium-Vanadium oxides (Ca-V-O).</p></li>
+</ul>
+<p>Just as we did in the previous tutorial, we need to connect to the Material Project to retrieve data by using our API key. For a detailed guide on how to obtain the key, please refer to the tutorial: <a class="reference internal" href="#(../querying/querying_materials.ipynb)"><span class="xref myst">querying materials</span></a> tutorial</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p><strong>Remember: you should not share your API key with anyone.</strong></p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Replace YOUR_API_KEY_HERE with your Materials Project API key</span>
+<span class="n">API_KEY</span> <span class="o">=</span> <span class="s2">&quot;YOUR_API_KEY_HERE&quot;</span>
+<span class="n">mpr</span> <span class="o">=</span> <span class="n">MPRester</span><span class="p">(</span><span class="n">API_KEY</span><span class="p">)</span>
+
+<span class="c1"># Search parameters</span>
+<span class="n">bandgap_min</span> <span class="o">=</span> <span class="mf">1.1</span>
+<span class="n">bandgap_max</span> <span class="o">=</span> <span class="mf">3.2</span>
+<span class="n">chemsys</span> <span class="o">=</span> <span class="s2">&quot;Ca-V-O&quot;</span>  <span class="c1"># Searching for CaVO3 and similar oxides</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">3</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># Replace YOUR_API_KEY_HERE with your Materials Project API key</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">API_KEY</span> <span class="o">=</span> <span class="s2">&quot;YOUR_API_KEY_HERE&quot;</span>
+<span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">mpr</span> <span class="o">=</span> <span class="n">MPRester</span><span class="p">(</span><span class="n">API_KEY</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="c1"># Search parameters</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="n">bandgap_min</span> <span class="o">=</span> <span class="mf">1.1</span>
+
+<span class="nn">File ~/anaconda3/envs/matdata/lib/python3.11/site-packages/mp_api/client/mprester.py:171,</span> in <span class="ni">MPRester.__init__</span><span class="nt">(self, api_key, endpoint, notify_db_version, include_user_agent, monty_decode, use_document_model, session, headers, mute_progress_bars)</span>
+<span class="g g-Whitespace">    </span><span class="mi">168</span> <span class="n">api_key</span> <span class="o">=</span> <span class="n">api_key</span> <span class="ow">or</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;MP_API_KEY&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">SETTINGS</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;PMG_MAPI_KEY&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">170</span> <span class="k">if</span> <span class="n">api_key</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">api_key</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">32</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">171</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">172</span>         <span class="s2">&quot;Please use a new API key from https://materialsproject.org/api &quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">173</span>         <span class="s2">&quot;Keys for the new API are 32 characters, whereas keys for the legacy &quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">174</span>         <span class="s2">&quot;API are 16 characters.&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">175</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">177</span> <span class="bp">self</span><span class="o">.</span><span class="n">api_key</span> <span class="o">=</span> <span class="n">api_key</span>
+<span class="g g-Whitespace">    </span><span class="mi">178</span> <span class="bp">self</span><span class="o">.</span><span class="n">endpoint</span> <span class="o">=</span> <span class="n">endpoint</span> <span class="ow">or</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">179</span>     <span class="s2">&quot;MP_API_ENDPOINT&quot;</span><span class="p">,</span> <span class="s2">&quot;https://api.materialsproject.org/&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">180</span> <span class="p">)</span>
+
+<span class="ne">ValueError</span>: Please use a new API key from https://materialsproject.org/api Keys for the new API are 32 characters, whereas keys for the legacy API are 16 characters.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="step-4-querying-the-materials-project">
+<h2>Step 4 - Querying the Materials Project<a class="headerlink" href="#step-4-querying-the-materials-project" title="Link to this heading">#</a></h2>
+<p>We query the Materials Project database for Ca-V-O materials within the band gap range</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Query Materials Project for Ca-Zr-O semiconductors</span>
+<span class="n">results_mp</span> <span class="o">=</span> <span class="n">mpr</span><span class="o">.</span><span class="n">materials</span><span class="o">.</span><span class="n">summary</span><span class="o">.</span><span class="n">search</span><span class="p">(</span>
+    <span class="n">chemsys</span><span class="o">=</span><span class="n">chemsys</span><span class="p">,</span>
+    <span class="n">band_gap</span><span class="o">=</span><span class="p">(</span><span class="n">bandgap_min</span><span class="p">,</span> <span class="n">bandgap_max</span><span class="p">),</span>
+    <span class="n">fields</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;material_id&quot;</span><span class="p">,</span> <span class="s2">&quot;formula_pretty&quot;</span><span class="p">,</span> <span class="s2">&quot;band_gap&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;formation_energy_per_atom&quot;</span><span class="p">,</span> <span class="s2">&quot;density&quot;</span><span class="p">,</span> <span class="s2">&quot;symmetry&quot;</span><span class="p">]</span>
+<span class="p">)</span>
+
+<span class="n">df_mp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;material_id&quot;</span><span class="p">:</span> <span class="n">r</span><span class="o">.</span><span class="n">material_id</span><span class="p">,</span>
+        <span class="s2">&quot;formula&quot;</span><span class="p">:</span> <span class="n">r</span><span class="o">.</span><span class="n">formula_pretty</span><span class="p">,</span>
+        <span class="s2">&quot;band_gap&quot;</span><span class="p">:</span> <span class="n">r</span><span class="o">.</span><span class="n">band_gap</span><span class="p">,</span>
+        <span class="s2">&quot;formation_energy_per_atom&quot;</span><span class="p">:</span> <span class="n">r</span><span class="o">.</span><span class="n">formation_energy_per_atom</span><span class="p">,</span>
+        <span class="s2">&quot;density&quot;</span><span class="p">:</span> <span class="n">r</span><span class="o">.</span><span class="n">density</span><span class="p">,</span>
+        <span class="s2">&quot;crystal_system&quot;</span><span class="p">:</span> <span class="n">r</span><span class="o">.</span><span class="n">symmetry</span><span class="o">.</span><span class="n">crystal_system</span>
+    <span class="p">}</span>
+    <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">results_mp</span>
+<span class="p">])</span>
+
+<span class="c1"># Sort by band gap for better readability</span>
+<span class="n">df_mp</span> <span class="o">=</span> <span class="n">df_mp</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&quot;band_gap&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">df_mp</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Retrieving SummaryDoc documents: 100%|██████████| 15/15 [00:00&lt;00:00, 79638.68it/s]
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>material_id</th>
+      <th>formula</th>
+      <th>band_gap</th>
+      <th>formation_energy_per_atom</th>
+      <th>density</th>
+      <th>crystal_system</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>mp-1048922</td>
+      <td>CaV2O4</td>
+      <td>1.1633</td>
+      <td>-2.709560</td>
+      <td>3.867841</td>
+      <td>Trigonal</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>mp-1041142</td>
+      <td>CaV2O4</td>
+      <td>1.2168</td>
+      <td>-2.736091</td>
+      <td>3.852460</td>
+      <td>Trigonal</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>mp-1365417</td>
+      <td>CaV2O4</td>
+      <td>1.3267</td>
+      <td>-2.684335</td>
+      <td>3.898550</td>
+      <td>Monoclinic</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>mp-1284741</td>
+      <td>Ca2V3O8</td>
+      <td>1.4963</td>
+      <td>-2.862569</td>
+      <td>3.822025</td>
+      <td>Monoclinic</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>mp-1342904</td>
+      <td>CaV2O6</td>
+      <td>1.5352</td>
+      <td>-2.567944</td>
+      <td>3.616555</td>
+      <td>Orthorhombic</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>mp-1835930</td>
+      <td>CaV2O4</td>
+      <td>1.5513</td>
+      <td>-2.788971</td>
+      <td>4.098466</td>
+      <td>Monoclinic</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>mp-1042856</td>
+      <td>Ca2V3O8</td>
+      <td>1.6592</td>
+      <td>-2.765350</td>
+      <td>3.571802</td>
+      <td>Hexagonal</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>mp-1663141</td>
+      <td>Ca2V3O8</td>
+      <td>1.9017</td>
+      <td>-2.777982</td>
+      <td>3.562255</td>
+      <td>Hexagonal</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>mp-1043217</td>
+      <td>CaV2O5</td>
+      <td>2.1831</td>
+      <td>-2.758699</td>
+      <td>3.054736</td>
+      <td>Orthorhombic</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>mp-891955</td>
+      <td>Ca10V6O25</td>
+      <td>2.3146</td>
+      <td>-2.990032</td>
+      <td>3.102293</td>
+      <td>Trigonal</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>mp-891956</td>
+      <td>Ca10V6O25</td>
+      <td>2.3495</td>
+      <td>-3.018828</td>
+      <td>3.011928</td>
+      <td>Trigonal</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>mp-18866</td>
+      <td>CaV4O9</td>
+      <td>2.5061</td>
+      <td>-2.640345</td>
+      <td>3.491107</td>
+      <td>Tetragonal</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>mp-19347</td>
+      <td>CaV3O7</td>
+      <td>2.6227</td>
+      <td>-2.711809</td>
+      <td>3.303731</td>
+      <td>Orthorhombic</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>mp-27624</td>
+      <td>CaV2O6</td>
+      <td>2.8812</td>
+      <td>-2.699767</td>
+      <td>3.116052</td>
+      <td>Monoclinic</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>mp-27614</td>
+      <td>Ca2V2O7</td>
+      <td>2.9553</td>
+      <td>-2.908076</td>
+      <td>3.354658</td>
+      <td>Triclinic</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="step-5-exploring-the-results">
+<h2>Step 5 - Exploring the Results<a class="headerlink" href="#step-5-exploring-the-results" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">df_mp</span><span class="p">[</span><span class="s2">&quot;band_gap&quot;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">kde</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Band Gap (eV)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Count&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Distribution of Band Gaps for Ca-V-O Materials (Materials Project)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/b7520477628fa86fb8af45a005d341a079ab08384196720ee94fd9295a06de82.png" src="../_images/b7520477628fa86fb8af45a005d341a079ab08384196720ee94fd9295a06de82.png" />
+</div>
+</div>
+</section>
+<section id="step-6-using-matminer-datasets">
+<h2>Step 6 - Using Matminer Datasets<a class="headerlink" href="#step-6-using-matminer-datasets" title="Link to this heading">#</a></h2>
+<p>The matminer library provides curated datasets ready for materials informatics. If you want to learn more about the datasets available in matminer, you can visit <a class="reference external" href="https://hackingmaterials.lbl.gov/matminer/dataset_summary.html">their website here</a>. It is a very complete page that indicates the names and the content of the datasets, in addition the the number of entries of each dataset. This information will be essential when choosing which dataset might be useful for our wanted criteria. In our example, we are working with perovskites and a limited bandgap, so we will load matminer datasets that contain this information.</p>
+</section>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "vmiranda4/materials-data-mining",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./data_mining"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../querying/querying_materials.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Querying Materials Data from the Materials Project using Pymatgen</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-introduction">Step 1 - Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-setup-and-installation">Step 2 - Setup and Installation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-defining-th-search-parameters">Step 3 - Defining th Search Parameters</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-querying-the-materials-project">Step 4 - Querying the Materials Project</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-exploring-the-results">Step 5 - Exploring the Results</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-6-using-matminer-datasets">Step 6 - Using Matminer Datasets</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Valentina Miranda
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
