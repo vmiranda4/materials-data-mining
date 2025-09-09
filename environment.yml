@@ -1,0 +1,43 @@
+name: matdata
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  # Core Python
+  - python=3.11
+  
+  # Jupyter ecosystem
+  - jupyter
+  - jupyterlab
+  - notebook
+  - jupyter-book
+  
+  # Core scientific computing
+  - numpy
+  - pandas
+  - scipy
+  - matplotlib
+  - seaborn
+  - plotly
+  - scikit-learn
+  - scikit-image
+  
+  # Materials science specific
+  - pymatgen
+  - ase
+  
+  # Other useful packages
+  - requests
+  - pyyaml
+  - tqdm
+  
+  # Pip packages (for packages not available in conda)
+  - pip
+  - pip:
+    - mp-api
+    - matminer
+    - crystal-toolkit
+    - emmet-core
+    - jupyter-book  # Also install via pip for latest version
+    - myst-nb
+    - sphinx-book-theme
