@@ -26,7 +26,7 @@ Traceback (most recent call last):
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
 # Replace YOUR_API_KEY_HERE with your Materials Project API key
-API_KEY = "YOUR_API_KEY_HERE"
+API_KEY = "YOUR_APIA_KEY_HERE"
 mpr = MPRester(API_KEY)
 
 # Search parameters
@@ -40,7 +40,7 @@ chemsys = "Ca-V-O"  # Searching for CaVO3 and similar oxides
 [31mValueError[39m                                Traceback (most recent call last)
 [36mCell[39m[36m [39m[32mIn[2][39m[32m, line 3[39m
 [32m      1[39m [38;5;66;03m# Replace YOUR_API_KEY_HERE with your Materials Project API key[39;00m
-[32m      2[39m API_KEY = [33m"[39m[33mYOUR_API_KEY_HERE[39m[33m"[39m
+[32m      2[39m API_KEY = [33m"[39m[33mYOUR_APIA_KEY_HERE[39m[33m"[39m
 [32m----> [39m[32m3[39m mpr = [43mMPRester[49m[43m([49m[43mAPI_KEY[49m[43m)[49m
 [32m      5[39m [38;5;66;03m# Search parameters[39;00m
 [32m      6[39m bandgap_min = [32m1.1[39m

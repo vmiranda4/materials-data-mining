@@ -460,8 +460,31 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#connecting-to-the-materials-project">Connecting to the Materials Project</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-exploring-the-results">Step 4 - Exploring the Results</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-using-matminer-datasets">Step 5 - Using Matminer Datasets</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-exploring-the-results">Step 4 - Exploring the Results</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#histogram-distribution-of-band-gaps">Histogram: distribution of band gaps</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scatter-plot-band-gap-vs-formation-energy">Scatter Plot: Band Gap vs. Formation Energy</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#density-distribution-by-crystal-system">Density Distribution by Crystal System</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-using-matminer-datasets">Step 5 - Using Matminer Datasets</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-a-dataset-from-matminer">Loading a Dataset from Matminer</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-6-assessing-dataset-suitability">Step 6 - Assessing Dataset Suitability</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#findings">Findings:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-7-filtering-the-dataset">Step 7 - Filtering the Dataset</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-band-gap-distributions">Comparing Band Gap distributions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-8-reflecting-on-the-filtered-matminer-results">Step 8 - Reflecting on the Filtered Matminer Results</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-9-wrapping-up">Step 9 - Wrapping up</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-we-did">What we did</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-takeaways">Key takeaways</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">Next steps</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -501,9 +524,9 @@ document.write(`
 <p>First, make sure you have the required libraries installed:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span> <span class="c1"># to organize data</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span> 
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span> <span class="c1"># to visualize patterns and highlights </span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">mp_api.client</span><span class="w"> </span><span class="kn">import</span> <span class="n">MPRester</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">matminer.datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span>
@@ -554,7 +577,7 @@ Neighboring elements often share similar electronic configurations, so replacing
 <h2>Step 3 - Querying the Materials Project<a class="headerlink" href="#step-3-querying-the-materials-project" title="Link to this heading">#</a></h2>
 <section id="connecting-to-the-materials-project">
 <h3>Connecting to the Materials Project<a class="headerlink" href="#connecting-to-the-materials-project" title="Link to this heading">#</a></h3>
-<p>Just as we did in the previous tutorial, we need to connect to the Material Project to retrieve data by using our API key. For a detailed guide on how to obtain the key, please refer to the tutorial: <a class="reference internal" href="#(../querying/querying_materials.ipynb)"><span class="xref myst">Querying Materials</span></a>.</p>
+<p>Just as we did in the previous tutorial, we need to connect to the Materials Project to retrieve data by using our API key. For a detailed guide on how to obtain the key, please refer to the tutorial: <a class="reference internal" href="#(../querying/querying_materials.ipynb)"><span class="xref myst">Querying Materials</span></a>.</p>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
 <p><strong>Remember: you should not share your API key with anyone.</strong></p>
@@ -563,7 +586,7 @@ Neighboring elements often share similar electronic configurations, so replacing
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Replace YOUR_API_KEY_HERE with your Materials Project API key</span>
-<span class="n">API_KEY</span> <span class="o">=</span> <span class="s2">&quot;YOUR_API_KEY_HERE&quot;</span>
+<span class="n">API_KEY</span> <span class="o">=</span> <span class="s2">&quot;YOUR_APIA_KEY_HERE&quot;</span>
 <span class="n">mpr</span> <span class="o">=</span> <span class="n">MPRester</span><span class="p">(</span><span class="n">API_KEY</span><span class="p">)</span>
 
 <span class="c1"># Search parameters</span>
@@ -578,7 +601,7 @@ Neighboring elements often share similar electronic configurations, so replacing
 <span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
 <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">3</span>
 <span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># Replace YOUR_API_KEY_HERE with your Materials Project API key</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">API_KEY</span> <span class="o">=</span> <span class="s2">&quot;YOUR_API_KEY_HERE&quot;</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">API_KEY</span> <span class="o">=</span> <span class="s2">&quot;YOUR_APIA_KEY_HERE&quot;</span>
 <span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">mpr</span> <span class="o">=</span> <span class="n">MPRester</span><span class="p">(</span><span class="n">API_KEY</span><span class="p">)</span>
 <span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="c1"># Search parameters</span>
 <span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="n">bandgap_min</span> <span class="o">=</span> <span class="mf">1.1</span>
@@ -631,7 +654,7 @@ Neighboring elements often share similar electronic configurations, so replacing
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Retrieving SummaryDoc documents: 100%|██████████| 15/15 [00:00&lt;00:00, 79638.68it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Retrieving SummaryDoc documents: 100%|██████████| 15/15 [00:00&lt;00:00, 91846.07it/s]
 </pre></div>
 </div>
 <div class="output text_html"><div>
@@ -805,6 +828,11 @@ Neighboring elements often share similar electronic configurations, so replacing
 <hr class="docutils" />
 <section id="step-4-exploring-the-results">
 <h2>Step 4 - Exploring the Results<a class="headerlink" href="#step-4-exploring-the-results" title="Link to this heading">#</a></h2>
+<p>After retrieving our dataset from the Materials Project, the next step is to explore it visually. Tables of numbers are useful, but they can be overwhelming — plots often reveal patterns and insights much more quickly.</p>
+<section id="histogram-distribution-of-band-gaps">
+<h3>Histogram: distribution of band gaps<a class="headerlink" href="#histogram-distribution-of-band-gaps" title="Link to this heading">#</a></h3>
+<p>One property we are especially interested in is the band gap, since it determines whether a material behaves as a conductor, semiconductor, or insulator. Recall that we set our search range to 1.1–3.2 eV because we are specifically targeting semiconductors.</p>
+<p>To better understand how the band gaps of our retrieved materials are distributed, let’s make a histogram. This plot will show us how many of the Ca–V–O compounds fall into different band gap ranges.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
@@ -820,11 +848,728 @@ Neighboring elements often share similar electronic configurations, so replacing
 <img alt="../_images/b7520477628fa86fb8af45a005d341a079ab08384196720ee94fd9295a06de82.png" src="../_images/b7520477628fa86fb8af45a005d341a079ab08384196720ee94fd9295a06de82.png" />
 </div>
 </div>
+<p>The histogram gives us a distribution of band gaps for all the candidate materials in our search. Each bar represents the number of materials with a band gap in a certain range, and the smooth line (kernel density estimate) helps us see the overall shape of the distribution.</p>
+<p>By inspecting this plot, we can quickly answer questions such as:</p>
+<ul class="simple">
+<li><p>Do most of the Ca–V–O compounds cluster around a narrow band gap range, or are they spread out?</p></li>
+<li><p>Are there enough candidates with band gaps close to the ideal semiconductor values (e.g., ~1.5–2.0 eV for solar cell applications)?</p></li>
+<li><p>Are there any outliers with unusually high or low band gaps compared to the rest?</p></li>
+</ul>
+<p>This kind of exploratory visualization helps us narrow down which materials may be most promising for further study, without having to examine each entry individually.</p>
+</section>
+<section id="scatter-plot-band-gap-vs-formation-energy">
+<h3>Scatter Plot: Band Gap vs. Formation Energy<a class="headerlink" href="#scatter-plot-band-gap-vs-formation-energy" title="Link to this heading">#</a></h3>
+<p>Formation energy per atom tells us how stable a material is — lower (more negative) values generally mean more stable compounds. Plotting formation energy against band gap helps us identify candidates that are both stable and in the desired band gap range.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">df_mp</span><span class="p">,</span>
+    <span class="n">x</span><span class="o">=</span><span class="s2">&quot;band_gap&quot;</span><span class="p">,</span> 
+    <span class="n">y</span><span class="o">=</span><span class="s2">&quot;formation_energy_per_atom&quot;</span><span class="p">,</span>
+    <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;crystal_system&quot;</span><span class="p">,</span>
+    <span class="n">s</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="n">palette</span><span class="o">=</span><span class="s2">&quot;Set2&quot;</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="mf">1.1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Lower band gap limit&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="mf">3.2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Upper band gap limit&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Band Gap (eV)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Formation Energy per Atom (eV)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Band Gap vs. Formation Energy (Ca-V-O Materials)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/89873dcb7619f86ba87d48c95a40bca5fe8d0307e55b5eedea6dedfec6200b4e.png" src="../_images/89873dcb7619f86ba87d48c95a40bca5fe8d0307e55b5eedea6dedfec6200b4e.png" />
+</div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<ul class="simple">
+<li><p>Points further down (more negative formation energy) represent more stable compounds.</p></li>
+<li><p>The vertical dashed lines mark our chosen semiconductor band gap window.</p></li>
+<li><p>By looking at the points within this window, we can spot which candidates are both semiconducting and stable, making them more attractive for real applications.</p></li>
+</ul>
+</div>
+</section>
+<section id="density-distribution-by-crystal-system">
+<h3>Density Distribution by Crystal System<a class="headerlink" href="#density-distribution-by-crystal-system" title="Link to this heading">#</a></h3>
+<p>Another interesting angle is to check if different crystal systems tend to have different densities. This can be useful for practical applications, where density affects properties like mass transport, mechanical strength, and cost.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">df_mp</span><span class="p">,</span> 
+    <span class="n">x</span><span class="o">=</span><span class="s2">&quot;crystal_system&quot;</span><span class="p">,</span> 
+    <span class="n">y</span><span class="o">=</span><span class="s2">&quot;density&quot;</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Crystal System&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Density (g/cm³)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Density Distribution of Ca-V-O Materials by Crystal System&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/82e97e6be1b72f698f2c07c089fd1404812a9c99f7e5562c6cc7f4d5f81118eb.png" src="../_images/82e97e6be1b72f698f2c07c089fd1404812a9c99f7e5562c6cc7f4d5f81118eb.png" />
+</div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<ul class="simple">
+<li><p>Each box summarizes the density distribution for a given crystal system.</p></li>
+<li><p>This allows us to see whether certain crystal families (e.g., monoclinic vs. orthorhombic) tend to be lighter or denser.</p></li>
+<li><p>If a specific application (say, lightweight materials for aerospace) requires low density, this view can guide which crystal systems deserve more attention.</p></li>
+</ul>
+</div>
+</section>
 </section>
 <hr class="docutils" />
 <section id="step-5-using-matminer-datasets">
 <h2>Step 5 - Using Matminer Datasets<a class="headerlink" href="#step-5-using-matminer-datasets" title="Link to this heading">#</a></h2>
-<p>The matminer library provides curated datasets ready for materials informatics. If you want to learn more about the datasets available in matminer, you can visit <a class="reference external" href="https://hackingmaterials.lbl.gov/matminer/dataset_summary.html">their website here</a>. It is a very complete page that indicates the names and the content of the datasets, in addition the the number of entries of each dataset. This information will be essential when choosing which dataset might be useful for our wanted criteria. In our example, we are working with perovskites and a limited bandgap, so we will load matminer datasets that contain this information.</p>
+<p>The matminer library provides curated datasets ready for materials informatics. If you want to learn more about the datasets available in matminer, you can visit <a class="reference external" href="https://hackingmaterials.lbl.gov/matminer/dataset_summary.html">their website here</a>. It is a very complete page that indicates the names and the content of the datasets, in addition to the number of entries of each dataset. This information will be essential when choosing which dataset might be useful for our wanted criteria. In our example, we are working with perovskites and a limited bandgap, so we will load matminer datasets that contain this information.</p>
+<p>We can also check the list using code, as follows:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">matminer.datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_available_datasets</span>
+
+<span class="c1"># List all datasets available</span>
+<span class="n">datasets</span> <span class="o">=</span> <span class="n">get_available_datasets</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">datasets</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>boltztrap_mp: Effective mass and thermoelectric properties of 8924 compounds in The  Materials Project database that are calculated by the BoltzTraP software package run on the GGA-PBE or GGA+U density functional theory calculation results. The properties are reported at the temperature of 300 Kelvin and the carrier concentration of 1e18 1/cm3.
+
+brgoch_superhard_training: 2574 materials used for training regressors that predict shear and bulk modulus.
+
+castelli_perovskites: 18,928 perovskites generated with ABX combinatorics, calculating gllbsc band gap and pbe structure, and also reporting absolute band edge positions and heat of formation.
+
+citrine_thermal_conductivity: Thermal conductivity of 872 compounds measured experimentally and retrieved from Citrine database from various references. The reported values are measured at various temperatures of which 295 are at room temperature.
+
+dielectric_constant: 1,056 structures with dielectric properties, calculated with DFPT-PBE.
+
+double_perovskites_gap: Band gap of 1306 double perovskites (a_1-b_1-a_2-b_2-O6) calculated using ﻿Gritsenko, van Leeuwen, van Lenthe and Baerends potential (gllbsc) in GPAW.
+
+double_perovskites_gap_lumo: Supplementary lumo data of 55 atoms for the double_perovskites_gap dataset.
+
+elastic_tensor_2015: 1,181 structures with elastic properties calculated with DFT-PBE.
+
+expt_formation_enthalpy: Experimental formation enthalpies for inorganic compounds, collected from years of calorimetric experiments. There are 1,276 entries in this dataset, mostly binary compounds. Matching mpids or oqmdids as well as the DFT-computed formation energies are also added (if any).
+
+expt_formation_enthalpy_kingsbury: Dataset containing experimental standard formation enthalpies for solids. Formation enthalpies were compiled primarily from Kim et al., Kubaschewski, and the NIST JANAF tables (see references). Elements, liquids, and gases were excluded. Data were deduplicated such that each material is associated with a single formation enthalpy value. Refer to Wang et al. (see references) for a complete desciption of the methods used. Materials Project database IDs (mp-ids) were assigned to materials from among computed materials in the Materials Project database (version 2021.03.22) that were 1) not marked &#39;theoretical&#39;, 2) had structures matching at least one ICSD material, and 3) were within 200 meV of the DFT-computed stable energy hull (e_above_hull &lt; 0.2 eV). Among these candidates, we chose the mp-id with the lowest e_above_hull that matched the reported spacegroup (where available).
+
+expt_gap: Experimental band gap of 6354 inorganic semiconductors.
+
+expt_gap_kingsbury: Identical to the matbench_expt_gap dataset, except that Materials Project database IDs (mp-ids) have been associated with each material using the same method as described for the expt_formation_enthalpy_kingsbury dataset. Columns have also been renamed for consistency with the formation enthalpy data.
+
+flla: 3938 structures and computed formation energies from &quot;Crystal Structure Representations for Machine Learning Models of Formation Energies.&quot;
+
+glass_binary: Metallic glass formation data for binary alloys, collected from various experimental techniques such as melt-spinning or mechanical alloying. This dataset covers all compositions with an interval of 5 at. % in 59 binary systems, containing a total of 5959 alloys in the dataset. The target property of this dataset is the glass forming ability (GFA), i.e. whether the composition can form monolithic glass or not, which is either 1 for glass forming or 0 for non-full glass forming.
+
+glass_binary_v2: Identical to glass_binary dataset, but with duplicate entries merged. If there was a disagreement in gfa when merging the class was defaulted to 1.
+
+glass_ternary_hipt: Metallic glass formation dataset for ternary alloys, collected from the high-throughput sputtering experiments measuring whether it is possible to form a glass using sputtering. The hipt experimental data are of the Co-Fe-Zr, Co-Ti-Zr, Co-V-Zr and Fe-Ti-Nb ternary systems.
+
+glass_ternary_landolt: Metallic glass formation dataset for ternary alloys, collected from the &quot;Nonequilibrium Phase Diagrams of Ternary Amorphous Alloys,’ a volume of the Landolt– Börnstein collection. This dataset contains experimental measurements of whether it is possible to form a glass using a variety of processing techniques at thousands of compositions from hundreds of ternary systems. The processing techniques are designated in the &quot;processing&quot; column. There are originally 7191 experiments in this dataset, will be reduced to 6203 after deduplicated, and will be further reduced to 6118 if combining multiple data for one composition. There are originally 6780 melt-spinning experiments in this dataset, will be reduced to 5800 if deduplicated, and will be further reduced to 5736 if combining multiple experimental data for one composition.
+
+heusler_magnetic: 1153 Heusler alloys with DFT-calculated magnetic and electronic properties. The 1153 alloys include 576 full, 449 half and 128 inverse Heusler alloys. The data are extracted and cleaned (including de-duplicating) from Citrine.
+
+jarvis_dft_2d: Various properties of 636 2D materials computed with the OptB88vdW and TBmBJ functionals taken from the JARVIS DFT database.
+
+jarvis_dft_3d: Various properties of 25,923 bulk materials computed with the OptB88vdW and TBmBJ functionals taken from the JARVIS DFT database.
+
+jarvis_ml_dft_training: Various properties of 24,759 bulk and 2D materials computed with the OptB88vdW and TBmBJ functionals taken from the JARVIS DFT database.
+
+m2ax: Elastic properties of 223 stable M2AX compounds from &quot;A comprehensive survey of M2AX phase elastic properties&quot; by Cover et al. Calculations are PAW PW91.
+
+matbench_dielectric: Matbench v0.1 test dataset for predicting refractive index from structure. Adapted from Materials Project database. Removed entries having a formation energy (or energy above the convex hull) more than 150meV and those having refractive indices less than 1 and those containing noble gases. Retrieved April 2, 2019. For benchmarking w/ nested cross validation, the order of the dataset must be identical to the retrieved data; refer to the Automatminer/Matbench publication for more details.
+
+matbench_expt_gap: Matbench v0.1 test dataset for predicting experimental band gap from composition alone. Retrieved from Zhuo et al. supplementary information. Deduplicated according to composition, removing compositions with reported band gaps spanning more than a 0.1eV range; remaining compositions were assigned values based on the closest experimental value to the mean experimental value for that composition among all reports. For benchmarking w/ nested cross validation, the order of the dataset must be identical to the retrieved data; refer to the Automatminer/Matbench publication for more details.
+
+matbench_expt_is_metal: Matbench v0.1 test dataset for classifying metallicity from composition alone. Retrieved from Zhuo et al. supplementary information. Deduplicated according to composition, ensuring no conflicting reports were entered for any compositions (i.e., no reported compositions were both metal and nonmetal). For benchmarking w/ nested cross validation, the order of the dataset must be identical to the retrieved data; refer to the Automatminer/Matbench publication for more details.
+
+matbench_glass: Matbench v0.1 test dataset for predicting full bulk metallic glass formation ability from chemical formula. Retrieved from &quot;Nonequilibrium Phase Diagrams of Ternary Amorphous Alloys,’ a volume of the Landolt– Börnstein collection. Deduplicated according to composition, ensuring no compositions were reported as both GFA and not GFA (i.e., all reports agreed on the classification designation). For benchmarking w/ nested cross validation, the order of the dataset must be identical to the retrieved data; refer to the Automatminer/Matbench publication for more details.
+
+matbench_jdft2d: Matbench v0.1 test dataset for predicting exfoliation energies from crystal structure (computed with the OptB88vdW and TBmBJ functionals). Adapted from the JARVIS DFT database. For benchmarking w/ nested cross validation, the order of the dataset must be identical to the retrieved data; refer to the Automatminer/Matbench publication for more details.
+
+matbench_log_gvrh: Matbench v0.1 test dataset for predicting DFT log10 VRH-average shear modulus from structure. Adapted from Materials Project database. Removed entries having a formation energy (or energy above the convex hull) more than 150meV and those having negative G_Voigt, G_Reuss, G_VRH, K_Voigt, K_Reuss, or K_VRH and those failing G_Reuss &lt;= G_VRH &lt;= G_Voigt or K_Reuss &lt;= K_VRH &lt;= K_Voigt and those containing noble gases. Retrieved April 2, 2019. For benchmarking w/ nested cross validation, the order of the dataset must be identical to the retrieved data; refer to the Automatminer/Matbench publication for more details.
+
+matbench_log_kvrh: Matbench v0.1 test dataset for predicting DFT log10 VRH-average bulk modulus from structure. Adapted from Materials Project database. Removed entries having a formation energy (or energy above the convex hull) more than 150meV and those having negative G_Voigt, G_Reuss, G_VRH, K_Voigt, K_Reuss, or K_VRH and those failing G_Reuss &lt;= G_VRH &lt;= G_Voigt or K_Reuss &lt;= K_VRH &lt;= K_Voigt and those containing noble gases. Retrieved April 2, 2019. For benchmarking w/ nested cross validation, the order of the dataset must be identical to the retrieved data; refer to the Automatminer/Matbench publication for more details.
+
+matbench_mp_e_form: Matbench v0.1 test dataset for predicting DFT formation energy from structure. Adapted from Materials Project database. Removed entries having formation energy more than 2.5eV and those containing noble gases. Retrieved April 2, 2019. For benchmarking w/ nested cross validation, the order of the dataset must be identical to the retrieved data; refer to the Automatminer/Matbench publication for more details.
+
+matbench_mp_gap: Matbench v0.1 test dataset for predicting DFT PBE band gap from structure. Adapted from Materials Project database. Removed entries having a formation energy (or energy above the convex hull) more than 150meV and those containing noble gases. Retrieved April 2, 2019. For benchmarking w/ nested cross validation, the order of the dataset must be identical to the retrieved data; refer to the Automatminer/Matbench publication for more details.
+
+matbench_mp_is_metal: Matbench v0.1 test dataset for predicting DFT metallicity from structure. Adapted from Materials Project database. Removed entries having a formation energy (or energy above the convex hull) more than 150meV and those containing noble gases. Retrieved April 2, 2019. For benchmarking w/ nested cross validation, the order of the dataset must be identical to the retrieved data; refer to the Automatminer/Matbench publication for more details.
+
+matbench_perovskites: Matbench v0.1 test dataset for predicting formation energy from crystal structure. Adapted from an original dataset generated by Castelli et al. For benchmarking w/ nested cross validation, the order of the dataset must be identical to the retrieved data; refer to the Automatminer/Matbench publication for more details.
+
+matbench_phonons: Matbench v0.1 test dataset for predicting vibration properties from crystal structure. Original data retrieved from Petretto et al. Original calculations done via ABINIT in the harmonic approximation based on density functional perturbation theory. Removed entries having a formation energy (or energy above the convex hull) more than 150meV. For benchmarking w/ nested cross validation, the order of the dataset must be identical to the retrieved data; refer to the Automatminer/Matbench publication for more details.
+
+matbench_steels: Matbench v0.1 test dataset for predicting steel yield strengths from chemical composition alone. Retrieved from Citrine informatics. Deduplicated. For benchmarking w/ nested cross validation, the order of the dataset must be identical to the retrieved data; refer to the Automatminer/Matbench publication for more details.
+
+mp_all_20181018: A complete copy of the Materials Project database as of 10/18/2018. mp_all files contain structure data for each material while mp_nostruct does not.
+
+mp_nostruct_20181018: A complete copy of the Materials Project database as of 10/18/2018. mp_all files contain structure data for each material while mp_nostruct does not.
+
+phonon_dielectric_mp: Phonon (lattice/atoms vibrations) and dielectric properties of 1296 compounds computed via ABINIT software package in the harmonic approximation based on density functional perturbation theory.
+
+piezoelectric_tensor: 941 structures with piezoelectric properties, calculated with DFT-PBE.
+
+ricci_boltztrap_mp_tabular: Ab-initio electronic transport database for inorganic materials. Complex multivariable BoltzTraP simulation data is condensed down into tabular form of two main motifs: average eigenvalues at set moderate carrier concentrations and temperatures, and optimal values among all carrier concentrations and temperatures within certain ranges. Here are reported the average of the eigenvalues of conductivity effective mass (mₑᶜᵒⁿᵈ), the Seebeck coefficient (S), the conductivity (σ), the electronic thermal conductivity (κₑ), and the Power Factor (PF) at a doping level of 10¹⁸ cm⁻³ and at a temperature of 300 K for n- and p-type. Also, the maximum values for S, σ, PF, and the minimum value for κₑ chosen among the temperatures [100, 1300] K, the doping levels [10¹⁶, 10²¹] cm⁻³, and doping types are reported. The properties that depend on the relaxation time are reported divided by the constant value 10⁻¹⁴. The average of the eigenvalues for all the properties at all the temperatures, doping levels, and doping types are reported in the tables for each entry. Data is indexed by materials project id (mpid)
+
+steel_strength: 312 steels with experimental yield strength and ultimate tensile strength, extracted and cleaned (including de-duplicating) from Citrine.
+
+superconductivity2018: Dataset of ~16,000 experimental superconductivity records (critical temperatures) from Stanev et al., originally from the Japanese National Institute for Materials Science. Does not include structural data. Includes ~300 measurements from materials found without superconductivity (Tc=0). No modifications were made to the core dataset, aside from basic file type change to json for (un)packaging with matminer. Reproduced under the Creative Commons 4.0 license, which can be found here: http://creativecommons.org/licenses/by/4.0/.
+
+tholander_nitrides: A challenging data set for quantum machine learning containing a diverse set of 12.8k polymorphs in the Zn-Ti-N, Zn-Zr-N and Zn-Hf-N chemical systems. The phase diagrams of the Ti-Zn-N, Zr-Zn-N, and Hf-Zn-N systems are determined using large-scale high-throughput density functional calculations (DFT-GGA) (PBE). In total 12,815 relaxed structures are shared alongside their energy calculated using the VASP DFT code. The High-Throughput Toolkit was used to manage the calculations. Data adapted and deduplicated from the original data on Zenodo at https://zenodo.org/record/5530535#.YjJ3ZhDMJLQ, published under MIT licence. Collated from separate files of chemical systems and deduplicated according to identical structures matching ht_ids. Prepared in collaboration with Rhys Goodall.
+
+ucsb_thermoelectrics: Database of ~1,100 experimental thermoelectric materials from UCSB aggregated from 108 source publications and personal communications. Downloaded from Citrine. Source UCSB webpage is http://www.mrl.ucsb.edu:8080/datamine/thermoelectric.jsp. See reference for more information on original data aggregation. No duplicate entries are present, but each src may result in multiple measurements of the same materials&#39; properties at different temperatures or conditions.
+
+wolverton_oxides: 4,914 perovskite oxides containing composition data, lattice constants, and formation + vacancy formation energies. All perovskites are of the form ABO3. Adapted from a dataset presented by Emery and Wolverton.
+
+
+[&#39;boltztrap_mp&#39;, &#39;brgoch_superhard_training&#39;, &#39;castelli_perovskites&#39;, &#39;citrine_thermal_conductivity&#39;, &#39;dielectric_constant&#39;, &#39;double_perovskites_gap&#39;, &#39;double_perovskites_gap_lumo&#39;, &#39;elastic_tensor_2015&#39;, &#39;expt_formation_enthalpy&#39;, &#39;expt_formation_enthalpy_kingsbury&#39;, &#39;expt_gap&#39;, &#39;expt_gap_kingsbury&#39;, &#39;flla&#39;, &#39;glass_binary&#39;, &#39;glass_binary_v2&#39;, &#39;glass_ternary_hipt&#39;, &#39;glass_ternary_landolt&#39;, &#39;heusler_magnetic&#39;, &#39;jarvis_dft_2d&#39;, &#39;jarvis_dft_3d&#39;, &#39;jarvis_ml_dft_training&#39;, &#39;m2ax&#39;, &#39;matbench_dielectric&#39;, &#39;matbench_expt_gap&#39;, &#39;matbench_expt_is_metal&#39;, &#39;matbench_glass&#39;, &#39;matbench_jdft2d&#39;, &#39;matbench_log_gvrh&#39;, &#39;matbench_log_kvrh&#39;, &#39;matbench_mp_e_form&#39;, &#39;matbench_mp_gap&#39;, &#39;matbench_mp_is_metal&#39;, &#39;matbench_perovskites&#39;, &#39;matbench_phonons&#39;, &#39;matbench_steels&#39;, &#39;mp_all_20181018&#39;, &#39;mp_nostruct_20181018&#39;, &#39;phonon_dielectric_mp&#39;, &#39;piezoelectric_tensor&#39;, &#39;ricci_boltztrap_mp_tabular&#39;, &#39;steel_strength&#39;, &#39;superconductivity2018&#39;, &#39;tholander_nitrides&#39;, &#39;ucsb_thermoelectrics&#39;, &#39;wolverton_oxides&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here, we can identify datasets that are relevant to our study. Some potentially useful ones are:</p>
+<ul class="simple">
+<li><p>castelli_perovskites</p></li>
+<li><p>double_perovskites_gap</p></li>
+<li><p>wolverton_oxides</p></li>
+</ul>
+<section id="loading-a-dataset-from-matminer">
+<h3>Loading a Dataset from Matminer<a class="headerlink" href="#loading-a-dataset-from-matminer" title="Link to this heading">#</a></h3>
+<p>We start by importing and loading the three datasets that seemed most promising:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">matminer.datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span>
+
+<span class="c1"># Candidate datasets</span>
+<span class="n">df_castelli</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;castelli_perovskites&quot;</span><span class="p">)</span>
+<span class="n">df_double</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;double_perovskites_gap&quot;</span><span class="p">)</span>
+<span class="n">df_wolverton</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;wolverton_oxides&quot;</span><span class="p">)</span>
+
+<span class="c1"># Quick overview</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Castelli Perovskites:&quot;</span><span class="p">,</span> <span class="n">df_castelli</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">df_castelli</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Double Perovskites:&quot;</span><span class="p">,</span> <span class="n">df_double</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">df_double</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Wolverton Oxides:&quot;</span><span class="p">,</span> <span class="n">df_wolverton</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">df_wolverton</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Castelli Perovskites: (18928, 10) Index([&#39;fermi level&#39;, &#39;fermi width&#39;, &#39;e_form&#39;, &#39;gap is direct&#39;, &#39;structure&#39;,
+       &#39;mu_b&#39;, &#39;formula&#39;, &#39;vbm&#39;, &#39;cbm&#39;, &#39;gap gllbsc&#39;],
+      dtype=&#39;object&#39;)
+Double Perovskites: (1306, 6) Index([&#39;formula&#39;, &#39;a_1&#39;, &#39;b_1&#39;, &#39;a_2&#39;, &#39;b_2&#39;, &#39;gap gllbsc&#39;], dtype=&#39;object&#39;)
+Wolverton Oxides: (4914, 16) Index([&#39;formula&#39;, &#39;atom a&#39;, &#39;atom b&#39;, &#39;lowest distortion&#39;, &#39;e_form&#39;, &#39;e_hull&#39;,
+       &#39;mu_b&#39;, &#39;vpa&#39;, &#39;gap pbe&#39;, &#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;alpha&#39;, &#39;beta&#39;, &#39;gamma&#39;,
+       &#39;e_form oxygen&#39;],
+      dtype=&#39;object&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="step-6-assessing-dataset-suitability">
+<h2>Step 6 - Assessing Dataset Suitability<a class="headerlink" href="#step-6-assessing-dataset-suitability" title="Link to this heading">#</a></h2>
+<p>Not all datasets are equally useful for our specific purpose (analyzing band gaps). We will check their columns.
+We see that the property that is relevant to us right now (band gap) appears in each of the datasets as a column. For <code class="docutils literal notranslate"><span class="pre">castellli_perovskites</span></code> and <code class="docutils literal notranslate"><span class="pre">double_perovskites_gap</span></code> the column is <code class="docutils literal notranslate"><span class="pre">gap</span> <span class="pre">gllbsc</span></code>. For <code class="docutils literal notranslate"><span class="pre">wolverton_oxides</span></code> it is <code class="docutils literal notranslate"><span class="pre">gap</span> <span class="pre">pbe</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Castelli band gap summary:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_castelli</span><span class="p">[</span><span class="s2">&quot;gap gllbsc&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Double Perovskites band gap summary:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_double</span><span class="p">[</span><span class="s2">&quot;gap gllbsc&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Wolverton Oxides band gap summary:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_wolverton</span><span class="p">[</span><span class="s2">&quot;gap pbe&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Castelli band gap summary:
+count    18928.000000
+mean         0.070813
+std          0.459684
+min          0.000000
+25%          0.000000
+50%          0.000000
+75%          0.000000
+max          7.000000
+Name: gap gllbsc, dtype: float64
+
+Double Perovskites band gap summary:
+count    1306.000000
+mean        4.012035
+std         1.581775
+min         0.106620
+25%         2.786297
+50%         4.074557
+75%         5.090252
+max         8.343255
+Name: gap gllbsc, dtype: float64
+
+Wolverton Oxides band gap summary:
+count    4914.000000
+mean        0.360123
+std         0.902904
+min         0.000000
+25%         0.000000
+50%         0.000000
+75%         0.000000
+max         6.221000
+Name: gap pbe, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<section id="findings">
+<h3>Findings:<a class="headerlink" href="#findings" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Castelli Perovskites</strong></p>
+<ul>
+<li><p>The gap pbe column seems to be almost entirely zero.</p></li>
+<li><p>This means it cannot be used to analyze band gaps.</p></li>
+<li><p>Still useful for other properties, but not suitable for our current task.</p></li>
+</ul>
+</li>
+<li><p><strong>Double Perovskites (gap dataset)</strong></p>
+<ul>
+<li><p>Contains a valid gap pbe column.</p></li>
+<li><p>Good candidate for band gap exploration.</p></li>
+</ul>
+</li>
+<li><p><strong>Wolverton Oxides</strong></p>
+<ul>
+<li><p>Also contains a column with mostly zero values.</p></li>
+</ul>
+</li>
+</ul>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>This evaluation step is crucial: before doing any analysis, we must ensure the dataset actually contains meaningful data for the property of interest.</p>
+</div>
+<p>For our assessment, we will continue with <code class="docutils literal notranslate"><span class="pre">double_perovskites_gap</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_double</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>formula</th>
+      <th>a_1</th>
+      <th>b_1</th>
+      <th>a_2</th>
+      <th>b_2</th>
+      <th>gap gllbsc</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>AgNbLaAlO6</td>
+      <td>Ag</td>
+      <td>Nb</td>
+      <td>La</td>
+      <td>Al</td>
+      <td>4.164543</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>AgNbLaGaO6</td>
+      <td>Ag</td>
+      <td>Nb</td>
+      <td>La</td>
+      <td>Ga</td>
+      <td>4.454629</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>AgNbLaInO6</td>
+      <td>Ag</td>
+      <td>Nb</td>
+      <td>La</td>
+      <td>In</td>
+      <td>4.192522</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>AgNbMgTiO6</td>
+      <td>Ag</td>
+      <td>Nb</td>
+      <td>Mg</td>
+      <td>Ti</td>
+      <td>3.963857</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>AgNbSnTiO6</td>
+      <td>Ag</td>
+      <td>Nb</td>
+      <td>Sn</td>
+      <td>Ti</td>
+      <td>2.881239</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="step-7-filtering-the-dataset">
+<h2>Step 7 - Filtering the Dataset<a class="headerlink" href="#step-7-filtering-the-dataset" title="Link to this heading">#</a></h2>
+<p>Now that we have chosen a suitable dataset, we are going to filter out to narrow our results closer to what we are looking for:</p>
+<ul class="simple">
+<li><p>Restrict the bandgap range to semiconductors (1.1-3.2 eV).</p></li>
+<li><p>Filter by formula to focus on Ca-containing oxides, and then of those results, only the ones containing V.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Apply band gap filter</span>
+<span class="n">gap_min</span><span class="p">,</span> <span class="n">gap_max</span> <span class="o">=</span> <span class="mf">1.1</span><span class="p">,</span> <span class="mf">3.2</span>
+
+<span class="n">df_double_filtered</span> <span class="o">=</span> <span class="n">df_double</span><span class="p">[(</span><span class="n">df_double</span><span class="p">[</span><span class="s2">&quot;gap gllbsc&quot;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">gap_min</span><span class="p">)</span> <span class="o">&amp;</span> 
+                               <span class="p">(</span><span class="n">df_double</span><span class="p">[</span><span class="s2">&quot;gap gllbsc&quot;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">gap_max</span><span class="p">)]</span>
+
+<span class="c1"># Further filter: only Ca-containing compounds</span>
+<span class="n">df_double_filtered</span> <span class="o">=</span> <span class="n">df_double_filtered</span><span class="p">[</span><span class="n">df_double_filtered</span><span class="p">[</span><span class="s2">&quot;formula&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s2">&quot;Ca&quot;</span><span class="p">,</span> <span class="n">na</span><span class="o">=</span><span class="kc">False</span><span class="p">)]</span>
+<span class="n">df_double_filtered</span> <span class="o">=</span> <span class="n">df_double_filtered</span><span class="p">[</span><span class="n">df_double_filtered</span><span class="p">[</span><span class="s2">&quot;formula&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s2">&quot;V&quot;</span><span class="p">,</span> <span class="n">na</span><span class="o">=</span><span class="kc">False</span><span class="p">)]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Double Perovskites (filtered):&quot;</span><span class="p">,</span> <span class="n">df_double_filtered</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Double Perovskites (filtered): (17, 6)
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can see that the dataset got reduced from 1306 to 17 entries.</p>
+<section id="comparing-band-gap-distributions">
+<h3>Comparing Band Gap distributions<a class="headerlink" href="#comparing-band-gap-distributions" title="Link to this heading">#</a></h3>
+<p>Once our datasets are filtered to a comparables scope (same band gap range, Ca-V based compounds), we can finally place them side by side. This will show us the differences using different data sources for our analysis:</p>
+<ul class="simple">
+<li><p>Materials project query: a targeted search we designed ourselves (Ca-V-O only). It reflects very specific chemistry and electronic criteria.</p></li>
+<li><p>Matminer datasets: pre-curated collections from the literature. Even after filtering, they reflect different sampling strategies and levels of completeness.</p></li>
+</ul>
+<p>By comparing distributions, we can ask:</p>
+<ul class="simple">
+<li><p>Do the curated datasets reproduce trends similar to a direct query from the Materials Project?</p></li>
+<li><p>Are there systematic differences (e.g., broader or narrower band gap ranges)?</p></li>
+<li><p>How does dataset choice influence the materials we might consider for applications?</p></li>
+</ul>
+<p>This is important because in real research, your conclusions may depend on the data source you rely on.</p>
+<p>We use a <strong>Kernel Density Estimate (KDE)</strong> plot to overlay the band gap distributions. This smooth curve allows us to see not just raw counts, but the overall shape of the distribution for each dataset.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">df_mp</span><span class="p">[</span><span class="s2">&quot;band_gap&quot;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;MP Query (Ca-V-O)&quot;</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">df_double_filtered</span><span class="p">[</span><span class="s2">&quot;gap gllbsc&quot;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Double Perovskites&quot;</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Band Gap (eV)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Density&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Band Gap Distributions Across Different Sources&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/71489486d80a6e74111fb7ecae14afdad0ac377ad7c229f5fc717ad0689ceeb7.png" src="../_images/71489486d80a6e74111fb7ecae14afdad0ac377ad7c229f5fc717ad0689ceeb7.png" />
+</div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Pay attention to:</p>
+<ul class="simple">
+<li><p>Peaks in the distributions: indicate “common” band gaps for the given chemistry and dataset.</p></li>
+<li><p>Shifts between datasets: can reveal methodological or sampling differences (e.g., if one dataset is consistently lower/higher).</p></li>
+<li><p>Spread of the curves: tells us whether a dataset captures a wide variety of materials or only a narrow subset.</p></li>
+</ul>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="step-8-reflecting-on-the-filtered-matminer-results">
+<h2>Step 8 - Reflecting on the Filtered Matminer Results<a class="headerlink" href="#step-8-reflecting-on-the-filtered-matminer-results" title="Link to this heading">#</a></h2>
+<p>We would like to have an idea of the materials that we obtained from our filtering process with matminer too:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_double_filtered</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>formula</th>
+      <th>a_1</th>
+      <th>b_1</th>
+      <th>a_2</th>
+      <th>b_2</th>
+      <th>gap gllbsc</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>207</th>
+      <td>CaHfCsVO6</td>
+      <td>Ca</td>
+      <td>Hf</td>
+      <td>Cs</td>
+      <td>V</td>
+      <td>2.234428</td>
+    </tr>
+    <tr>
+      <th>219</th>
+      <td>CaHfLiVO6</td>
+      <td>Ca</td>
+      <td>Hf</td>
+      <td>Li</td>
+      <td>V</td>
+      <td>2.939416</td>
+    </tr>
+    <tr>
+      <th>225</th>
+      <td>CaHfNaVO6</td>
+      <td>Ca</td>
+      <td>Hf</td>
+      <td>Na</td>
+      <td>V</td>
+      <td>2.576283</td>
+    </tr>
+    <tr>
+      <th>275</th>
+      <td>CaZrCsVO6</td>
+      <td>Ca</td>
+      <td>Zr</td>
+      <td>Cs</td>
+      <td>V</td>
+      <td>2.604377</td>
+    </tr>
+    <tr>
+      <th>288</th>
+      <td>CaZrLiVO6</td>
+      <td>Ca</td>
+      <td>Zr</td>
+      <td>Li</td>
+      <td>V</td>
+      <td>3.120800</td>
+    </tr>
+    <tr>
+      <th>294</th>
+      <td>CaZrNaVO6</td>
+      <td>Ca</td>
+      <td>Zr</td>
+      <td>Na</td>
+      <td>V</td>
+      <td>2.457279</td>
+    </tr>
+    <tr>
+      <th>390</th>
+      <td>CsVCaGeO6</td>
+      <td>Cs</td>
+      <td>V</td>
+      <td>Ca</td>
+      <td>Ge</td>
+      <td>1.540581</td>
+    </tr>
+    <tr>
+      <th>392</th>
+      <td>CsVCaSnO6</td>
+      <td>Cs</td>
+      <td>V</td>
+      <td>Ca</td>
+      <td>Sn</td>
+      <td>1.797516</td>
+    </tr>
+    <tr>
+      <th>393</th>
+      <td>CsVCaTiO6</td>
+      <td>Cs</td>
+      <td>V</td>
+      <td>Ca</td>
+      <td>Ti</td>
+      <td>2.424147</td>
+    </tr>
+    <tr>
+      <th>750</th>
+      <td>LiVCaGeO6</td>
+      <td>Li</td>
+      <td>V</td>
+      <td>Ca</td>
+      <td>Ge</td>
+      <td>2.638234</td>
+    </tr>
+    <tr>
+      <th>751</th>
+      <td>LiVCaSiO6</td>
+      <td>Li</td>
+      <td>V</td>
+      <td>Ca</td>
+      <td>Si</td>
+      <td>1.748631</td>
+    </tr>
+    <tr>
+      <th>752</th>
+      <td>LiVCaSnO6</td>
+      <td>Li</td>
+      <td>V</td>
+      <td>Ca</td>
+      <td>Sn</td>
+      <td>2.241717</td>
+    </tr>
+    <tr>
+      <th>753</th>
+      <td>LiVCaTiO6</td>
+      <td>Li</td>
+      <td>V</td>
+      <td>Ca</td>
+      <td>Ti</td>
+      <td>3.037880</td>
+    </tr>
+    <tr>
+      <th>877</th>
+      <td>NaVCaGeO6</td>
+      <td>Na</td>
+      <td>V</td>
+      <td>Ca</td>
+      <td>Ge</td>
+      <td>2.040411</td>
+    </tr>
+    <tr>
+      <th>878</th>
+      <td>NaVCaSiO6</td>
+      <td>Na</td>
+      <td>V</td>
+      <td>Ca</td>
+      <td>Si</td>
+      <td>1.556374</td>
+    </tr>
+    <tr>
+      <th>879</th>
+      <td>NaVCaSnO6</td>
+      <td>Na</td>
+      <td>V</td>
+      <td>Ca</td>
+      <td>Sn</td>
+      <td>2.198836</td>
+    </tr>
+    <tr>
+      <th>880</th>
+      <td>NaVCaTiO6</td>
+      <td>Na</td>
+      <td>V</td>
+      <td>Ca</td>
+      <td>Ti</td>
+      <td>2.748176</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>After applying our filters (Ca + V + semiconductor band gap range), we obtained a set of candidate materials from the Matminer datasets. At first glance, their chemical formulas look different from the ones we retrieved directly from the Materials Project.</p>
+<p>Why is that?</p>
+<ul class="simple">
+<li><p>Materials Project query gave us simple ternary oxides (Ca–V–O), as we explicitly defined the chemical system.</p></li>
+<li><p>Matminer datasets (like double_perovskites_gap) contain double perovskites, which are more complex by design. This means the filtered results include Ca, V, and O, but also additional elements.</p></li>
+</ul>
+<p>So, while both datasets respect our filters, they represent different chemical spaces:</p>
+<ul class="simple">
+<li><p>Materials Project: minimal chemical system, narrow and well-controlled.</p></li>
+<li><p>Matminer: richer perovskite family, where our chosen elements coexist with others.</p></li>
+</ul>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<ul class="simple">
+<li><p>In data mining, it’s not just about <em>what</em> you filter, but also about <em>where</em> the data comes from.</p></li>
+<li><p>The MP results might be more directly comparable to our base compound (CaTiO₃).</p></li>
+<li><p>The Matminer results, however, open doors to more exploratory searches, where V is embedded in larger families of perovskite structures.</p></li>
+</ul>
+</div>
+</section>
+<section id="step-9-wrapping-up">
+<h2>Step 9 - Wrapping up<a class="headerlink" href="#step-9-wrapping-up" title="Link to this heading">#</a></h2>
+<p>We have now completed our journey through a meaningful example of data mining in materials science. Let’s briefly reflect on the path we followed and what we learned along the way:</p>
+<section id="what-we-did">
+<h3>What we did<a class="headerlink" href="#what-we-did" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Defined a scientific question: exploring alternatives to CaTiO₃ by substituting Ti with V while keeping an eye on semiconducting behavior.</p></li>
+<li><p>Used the Materials Project: we learned how to query a live database with specific parameters (composition + band gap range), and explored the returned materials through organized dataframes and visualizations.</p></li>
+<li><p>Analyzed distributions: plots helped us quickly see trends in band gaps, densities, and crystal systems.</p></li>
+<li><p>Explored curated datasets with Matminer: we experimented with external datasets like double_perovskites_gap and wolverton_oxides, and discovered how dataset design shapes the results we obtain.</p></li>
+<li><p>Reflected on data sources: we learned that the same filter criteria can yield very different sets of candidate materials, depending on whether the dataset focuses on simple oxides, perovskites, or other families.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="key-takeaways">
+<h3>Key takeaways<a class="headerlink" href="#key-takeaways" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Data mining is contextual: knowing your dataset is as important as knowing your filters.</p></li>
+<li><p>Visualization is powerful: simple plots can reveal trends and guide decisions.</p></li>
+<li><p>Different databases complement each other: Materials Project provides up-to-date calculations, while Matminer offers curated, task-specific datasets that enable broader explorations.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="next-steps">
+<h3>Next steps<a class="headerlink" href="#next-steps" title="Link to this heading">#</a></h3>
+<p>This tutorial provided only a first look at how materials data mining works. Here are some directions for further exploration:</p>
+<ul class="simple">
+<li><p>Try substituting other transition metals (e.g., Nb, Cr, Fe) and compare trends.</p></li>
+<li><p>Extend the workflow by adding stability checks (e.g., energy above hull from Materials Project).</p></li>
+<li><p>Apply machine learning tools from Matminer to predict band gaps or other properties.</p></li>
+<li><p>Connect this workflow with ASE to automatically build and manipulate structures for deeper analysis.</p></li>
+</ul>
+</section>
 </section>
 <div class="toctree-wrapper compound">
 </div>
@@ -895,8 +1640,31 @@ Neighboring elements often share similar electronic configurations, so replacing
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#connecting-to-the-materials-project">Connecting to the Materials Project</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-exploring-the-results">Step 4 - Exploring the Results</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-using-matminer-datasets">Step 5 - Using Matminer Datasets</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-exploring-the-results">Step 4 - Exploring the Results</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#histogram-distribution-of-band-gaps">Histogram: distribution of band gaps</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scatter-plot-band-gap-vs-formation-energy">Scatter Plot: Band Gap vs. Formation Energy</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#density-distribution-by-crystal-system">Density Distribution by Crystal System</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-using-matminer-datasets">Step 5 - Using Matminer Datasets</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-a-dataset-from-matminer">Loading a Dataset from Matminer</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-6-assessing-dataset-suitability">Step 6 - Assessing Dataset Suitability</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#findings">Findings:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-7-filtering-the-dataset">Step 7 - Filtering the Dataset</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-band-gap-distributions">Comparing Band Gap distributions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-8-reflecting-on-the-filtered-matminer-results">Step 8 - Reflecting on the Filtered Matminer Results</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-9-wrapping-up">Step 9 - Wrapping up</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-we-did">What we did</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-takeaways">Key takeaways</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">Next steps</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
