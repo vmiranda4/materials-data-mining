@@ -60,8 +60,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'tools/tools_overview';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Environment Setup" href="../setup/environment_setup.html" />
-    <link rel="prev" title="Welcome to your Jupyter Book" href="../intro.html" />
+    <link rel="next" title="Meeting Materials Project" href="../materials_project/exploring_materials_project.html" />
+    <link rel="prev" title="Accelerating Materials Discovery with Data-Driven Tools" href="../intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -153,8 +153,8 @@
       
     
     
-    <img src="../_static/logo.png" class="logo__image only-light" alt="Materials Data Mining with Python - Home"/>
-    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Materials Data Mining with Python - Home"/>`);</script>
+    <img src="../_static/logo_fr.png" class="logo__image only-light" alt="Materials Data Mining with Python - Home"/>
+    <script>document.write(`<img src="../_static/logo_fr.png" class="logo__image only-dark" alt="Materials Data Mining with Python - Home"/>`);</script>
   
   
 </a></div>
@@ -175,15 +175,18 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../intro.html">
-                    Welcome to your Jupyter Book
+                    Accelerating Materials Discovery with Data-Driven Tools
                 </a>
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Overview of Tools and Resources</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../setup/environment_setup.html">Environment Setup</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../materials_project/exploring_materials_project.html">Meeting Materials Project</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../visualization/structure_visualization.html">Visualizing Crystal Structures with Pymatgen and Crystal Toolkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../visualization/structure_visualization.html">Visualizing Crystal Structures with Pymatgen and ASE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../querying/querying_materials.html">Querying Materials Data from the Materials Project using Pymatgen</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../data_mining/materials_scanning.html">Data Mining Materials with pymatgen and matminer</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="simple">
+</ul>
+</details></li>
 </ul>
 
     </div>
@@ -453,6 +456,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pymatgen-a-python-interface-for-materials-data">Pymatgen: A Python Interface for Materials Data</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matminer-data-mining-for-materials-science">Matminer: Data Mining for Materials Science</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ase-atomic-simulation-environment-structure-manipulation-and-visualization">ASE (Atomic Simulation Environment): Structure Manipulation and Visualization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">Next Steps</a></li>
 </ul>
             </nav>
         </div>
@@ -466,34 +470,48 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="overview-of-tools-and-resources">
 <h1>Overview of Tools and Resources<a class="headerlink" href="#overview-of-tools-and-resources" title="Link to this heading">#</a></h1>
-<p>In this tutorial, students are introduced to a set of powerful yet accessible computational tools for materials data mining and analysis. Each tool plays a specific role in the overall workflow, and together they provide a seamless and reproducible environment for exploring real materials data. The activity is designed so that instructors and students with limited programming experience can follow along successfully.</p>
+<p>Before we dive into data mining and analysis, it is important to pause and understand the tools that will guide us along the way. In modern materials science, the challenge is not just generating data—it is navigating, organizing, and interpreting the massive volumes of information that already exist. To do this effectively, researchers rely on a combination of computational libraries, databases, and programming environments that make the exploration of materials both rigorous and approachable.</p>
+<p>In this section, we highlight the key resources that will power our journey. These tools were chosen not only because they are widely used in cutting-edge research, but also because they strike a balance between accessibility and depth. By combining them, we will be able to move seamlessly from raw data to meaningful insights, all while building reproducible workflows that mirror real-world research practices.</p>
+<hr class="docutils" />
 <section id="getting-started-cloning-and-setting-up-the-environment">
 <h2>Getting Started: Cloning and Setting up the Environment<a class="headerlink" href="#getting-started-cloning-and-setting-up-the-environment" title="Link to this heading">#</a></h2>
 <p>All of the materials for this tutorial are hosted in a public GitHub repository, an online platform used for sharing and collaborating on code. GitHub allows users to access all files, track changes, and contribute to open-source projects. Users can clone this repository, which means that they can copy it to their local machines and install all required packages using a single command. This step ensures compatibility by installing the exact versions used in our tested environment. This greatly reduces the likelihood of dependency conflicts that might arise from version mismatches. The option to run the entire tutorial using Google Colab is provided. It is a browser-based platform that requires no local installation. This is specifically helpful for students or instructors working on shared or restricted machines; moreover, for remote collaborative tasks.</p>
 </section>
+<hr class="docutils" />
 <section id="jupyter-notebooks-our-computational-laboratory">
 <h2>Jupyter Notebooks: Our Computational Laboratory<a class="headerlink" href="#jupyter-notebooks-our-computational-laboratory" title="Link to this heading">#</a></h2>
 <p>The tutorial is developed through Jupyter Notebooks, a platform that combines executable code, text, equations, and visualizations in a single, interactive document. Students can read explanations and run code cells, all within the same interface. This format supports exploratory learning and encourages active engagement with the material. Whether running locally or on Google Colab, Jupyter notebooks serve as an accessible entry point for hands-on scientific computing.</p>
 </section>
+<hr class="docutils" />
 <section id="python-the-language-that-glues-everything-together">
 <h2>Python: The Language That Glues Everything Together<a class="headerlink" href="#python-the-language-that-glues-everything-together" title="Link to this heading">#</a></h2>
 <p>Python is the programming language used throughout the tutorial. It is widely used in science and technology applications, regarded for its simplicity, readability, high efficiency, and large ecosystem of scientific libraries, with a community of thousands of users worldwide.​18–20​ Python connects all the other tools in this workflow. Students and/or instructors do not need prior programming experience to follow this tutorial. All code is explained step-by-step and annotated to encourage understanding. By the end of this activity, students will gain familiarity with Python syntax and basic data manipulation techniques, which are valuable skills in scientific research, academy, and industry.</p>
 </section>
+<hr class="docutils" />
 <section id="materials-project-a-database-of-materials">
 <h2>Materials Project: a Database of Materials<a class="headerlink" href="#materials-project-a-database-of-materials" title="Link to this heading">#</a></h2>
 <p>The Materials Project is an open-access online database. It is an international initiative to get free access for data analysis providing relevant information from thousands of materials, viz. electronic structure, geometry, thermodynamics, and spectral information, together with compositional analysis and the feasibility to calculate the properties of all inorganic materials​38​.Students can use this resource to explore real materials data and retrieve relevant information for their own analyses. In the tutorial, the Materials Project is accessed both through its website and using an Application Programming Interface (API), which is a tool that allows programs to communicate with external services. In this context, the API allows users to retrieve materials data directly from the Materials Project using Python commands, without having to download files manually from the website. This tool allows students to automate remotely data retrieval and perform custom searches.</p>
 </section>
+<hr class="docutils" />
 <section id="pymatgen-a-python-interface-for-materials-data">
 <h2>Pymatgen: A Python Interface for Materials Data<a class="headerlink" href="#pymatgen-a-python-interface-for-materials-data" title="Link to this heading">#</a></h2>
 <p>Pymatgen (Python Materials Genomics) is a Python library that acts as a bridge between the Materials Project and your Jupyter Notebook and/or Google Colab. With Pymatgen, students can query the Materials Project using an API key, which is a personal access code provided for free by the respective website. This key identifies the user and allows them to make a certain number of automated data requests per day, ensuring responsible use of the database. Then students retrieve detailed structural information and perform basic analyses. Pymatgen provides simple functions for working with structures, converting file formats, and visualizing data, making it an essential component in this tutorial.</p>
 </section>
+<hr class="docutils" />
 <section id="matminer-data-mining-for-materials-science">
 <h2>Matminer: Data Mining for Materials Science<a class="headerlink" href="#matminer-data-mining-for-materials-science" title="Link to this heading">#</a></h2>
 <p>Matminer is a Python Library developed to support data mining and machine learning in materials science. It provides access to curated datasets like the widely known Materials Project, in addition to Citrine and MDF. This suite of tools is used for converting material structures into numerical descriptors that can be used in statistical analysis or modeling. In this tutorial, the students use Matminer to explore material properties and identify trends across different compounds. This exposes them to data-driven inquiry methods and the basic concepts of materials informatics.</p>
 </section>
+<hr class="docutils" />
 <section id="ase-atomic-simulation-environment-structure-manipulation-and-visualization">
 <h2>ASE (Atomic Simulation Environment): Structure Manipulation and Visualization<a class="headerlink" href="#ase-atomic-simulation-environment-structure-manipulation-and-visualization" title="Link to this heading">#</a></h2>
 <p>ASE is a Python library designed for creating, modifying, and visualizing atomic structures, together with implementing minimization algorithms, among many other practical applications. In this tutorial, students/instructors use ASE to manipulate structures retrieved from the Materials Project, such as by introducing point defects. ASE also includes built-in visualization capabilities that allow students to see the atomic arrangements they are working with. These visual insights are helpful for reinforcing the connection between data and physical structure and making abstract concepts more tangible.</p>
+</section>
+<hr class="docutils" />
+<section id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading">#</a></h2>
+<p>Together, these tools will form the foundation of everything we do in this project. Now that we have a sense of the digital “toolbox” available to us, it is time to start using it. We will begin by exploring one of the most important resources in computational materials science: the Materials Project, a vast database of computed properties for thousands of compounds.</p>
+<hr class="docutils" />
 </section>
 </section>
 
@@ -533,15 +551,15 @@ document.write(`
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Welcome to your Jupyter Book</p>
+        <p class="prev-next-title">Accelerating Materials Discovery with Data-Driven Tools</p>
       </div>
     </a>
     <a class="right-next"
-       href="../setup/environment_setup.html"
+       href="../materials_project/exploring_materials_project.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Environment Setup</p>
+        <p class="prev-next-title">Meeting Materials Project</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -568,6 +586,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pymatgen-a-python-interface-for-materials-data">Pymatgen: A Python Interface for Materials Data</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matminer-data-mining-for-materials-science">Matminer: Data Mining for Materials Science</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ase-atomic-simulation-environment-structure-manipulation-and-visualization">ASE (Atomic Simulation Environment): Structure Manipulation and Visualization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">Next Steps</a></li>
 </ul>
   </nav></div>
 

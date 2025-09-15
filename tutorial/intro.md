@@ -16,13 +16,13 @@ However, extracting insights from these datasets is **not trivial**. That’s wh
 - **[ASE](https://wiki.fysik.dtu.dk/ase/)** → for interactive 3D visualization of atomic structures.
 - **[matminer](https://hackingmaterials.lbl.gov/matminer/)** → for feature extraction, dataset access, and materials data mining.
 
-These tools help researchers, engineers, and students **accelerate materials discovery** for technologies like **semiconductors**, **photovoltaics**, **energy storage**, and **catalysis**.
+help researchers, engineers, and students **accelerate materials discovery** for technologies like **semiconductors**, **photovoltaics**, **energy storage**, **catalysis**, **clean fuels**, and **batteries**.
 
 ---
 
-## What You’ll Learn
+## What You will Learn
 
-By following this tutorial series, you’ll learn how to:
+By following this tutorial series, you will learn how to:
 
 - ✅ **Access** and query materials properties using the **Materials Project API**.
 - ✅ **Visualize** atomic structures in 3D using **pymatgen** and **ASE**.
@@ -53,13 +53,12 @@ This tutorial series is designed for:
 
 - **Students** in materials science, chemistry, and physics.
 - **Researchers** exploring new compounds and their properties.
-- **Engineers** seeking to integrate data-driven workflows into R&D.
+- **Engineers** seeking to integrate data-driven workflows into Research and Development.
 - **Developers** curious about materials informatics.
 
 ### **Prerequisites**
-- Basic knowledge of **Python** and **Jupyter Notebooks**.
 - Curiosity and enthusiasm for **materials science**.
-- No prior experience with DFT, databases, or visualization tools required — we’ll guide you through it!
+- No prior experience with DFT, databases, or visualization tools required — we will guide you through it!
 
 ---
 

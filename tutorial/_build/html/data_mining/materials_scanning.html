@@ -154,8 +154,8 @@
       
     
     
-    <img src="../_static/logo.png" class="logo__image only-light" alt="Materials Data Mining with Python - Home"/>
-    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Materials Data Mining with Python - Home"/>`);</script>
+    <img src="../_static/logo_fr.png" class="logo__image only-light" alt="Materials Data Mining with Python - Home"/>
+    <script>document.write(`<img src="../_static/logo_fr.png" class="logo__image only-dark" alt="Materials Data Mining with Python - Home"/>`);</script>
   
   
 </a></div>
@@ -450,19 +450,18 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-introduction">Step 1 - Introduction</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-setup-and-installation">Step 2 - Setup and Installation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-defining-the-search-parameters">Step 3 - Defining the Search Parameters</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-setup-and-installation">Step 1 - Setup and Installation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-defining-the-search-parameters">Step 2 - Defining the Search Parameters</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#choosing-a-neighboring-transition-metal">Choosing a Neighboring Transition Metal</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#focusing-on-semiconductors">Focusing on Semiconductors</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-querying-the-materials-project">Step 4 - Querying the Materials Project</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-querying-the-materials-project">Step 3 - Querying the Materials Project</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#connecting-to-the-materials-project">Connecting to the Materials Project</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-exploring-the-results">Step 5 - Exploring the Results</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-6-using-matminer-datasets">Step 6 - Using Matminer Datasets</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-exploring-the-results">Step 4 - Exploring the Results</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-using-matminer-datasets">Step 5 - Using Matminer Datasets</a></li>
 </ul>
             </nav>
         </div>
@@ -476,8 +475,6 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="data-mining-materials-with-pymatgen-and-matminer">
 <h1>Data Mining Materials with pymatgen and matminer<a class="headerlink" href="#data-mining-materials-with-pymatgen-and-matminer" title="Link to this heading">#</a></h1>
-<section id="step-1-introduction">
-<h2>Step 1 - Introduction<a class="headerlink" href="#step-1-introduction" title="Link to this heading">#</a></h2>
 <p>Materials science is entering the data-driven era. With the rise of high-throughput density functional theory (DFT) calculations, massive datasets containing structural, electronic, and thermodynamic properties of materials are now publicly available. However, having big data is not enough — we need tools to:</p>
 <ol class="arabic simple">
 <li><p>Access this data programmatically.</p></li>
@@ -498,9 +495,9 @@ document.write(`
 </li>
 <li><p>Compare results and discuss possible applications.</p></li>
 </ol>
-</section>
-<section id="step-2-setup-and-installation">
-<h2>Step 2 - Setup and Installation<a class="headerlink" href="#step-2-setup-and-installation" title="Link to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="step-1-setup-and-installation">
+<h2>Step 1 - Setup and Installation<a class="headerlink" href="#step-1-setup-and-installation" title="Link to this heading">#</a></h2>
 <p>First, make sure you have the required libraries installed:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -521,8 +518,9 @@ document.write(`
 </div>
 </div>
 </section>
-<section id="step-3-defining-the-search-parameters">
-<h2>Step 3 - Defining the Search Parameters<a class="headerlink" href="#step-3-defining-the-search-parameters" title="Link to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="step-2-defining-the-search-parameters">
+<h2>Step 2 - Defining the Search Parameters<a class="headerlink" href="#step-2-defining-the-search-parameters" title="Link to this heading">#</a></h2>
 <p>Our base compound is <span class="math notranslate nohighlight">\(\text{CaTiO}_3\)</span>. Suppose we are investigating its properties because it shows promise for a specific application — say, as a <strong>semiconducting material</strong> for solar energy harvesting.</p>
 <p>However, we might run into a few real-world constraints:</p>
 <ul class="simple">
@@ -551,8 +549,9 @@ Neighboring elements often share similar electronic configurations, so replacing
 </ul>
 </section>
 </section>
-<section id="step-4-querying-the-materials-project">
-<h2>Step 4 - Querying the Materials Project<a class="headerlink" href="#step-4-querying-the-materials-project" title="Link to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="step-3-querying-the-materials-project">
+<h2>Step 3 - Querying the Materials Project<a class="headerlink" href="#step-3-querying-the-materials-project" title="Link to this heading">#</a></h2>
 <section id="connecting-to-the-materials-project">
 <h3>Connecting to the Materials Project<a class="headerlink" href="#connecting-to-the-materials-project" title="Link to this heading">#</a></h3>
 <p>Just as we did in the previous tutorial, we need to connect to the Material Project to retrieve data by using our API key. For a detailed guide on how to obtain the key, please refer to the tutorial: <a class="reference internal" href="#(../querying/querying_materials.ipynb)"><span class="xref myst">Querying Materials</span></a>.</p>
@@ -803,8 +802,9 @@ Neighboring elements often share similar electronic configurations, so replacing
 </div>
 </section>
 </section>
-<section id="step-5-exploring-the-results">
-<h2>Step 5 - Exploring the Results<a class="headerlink" href="#step-5-exploring-the-results" title="Link to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="step-4-exploring-the-results">
+<h2>Step 4 - Exploring the Results<a class="headerlink" href="#step-4-exploring-the-results" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
@@ -821,8 +821,9 @@ Neighboring elements often share similar electronic configurations, so replacing
 </div>
 </div>
 </section>
-<section id="step-6-using-matminer-datasets">
-<h2>Step 6 - Using Matminer Datasets<a class="headerlink" href="#step-6-using-matminer-datasets" title="Link to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="step-5-using-matminer-datasets">
+<h2>Step 5 - Using Matminer Datasets<a class="headerlink" href="#step-5-using-matminer-datasets" title="Link to this heading">#</a></h2>
 <p>The matminer library provides curated datasets ready for materials informatics. If you want to learn more about the datasets available in matminer, you can visit <a class="reference external" href="https://hackingmaterials.lbl.gov/matminer/dataset_summary.html">their website here</a>. It is a very complete page that indicates the names and the content of the datasets, in addition the the number of entries of each dataset. This information will be essential when choosing which dataset might be useful for our wanted criteria. In our example, we are working with perovskites and a limited bandgap, so we will load matminer datasets that contain this information.</p>
 </section>
 <div class="toctree-wrapper compound">
@@ -884,19 +885,18 @@ Neighboring elements often share similar electronic configurations, so replacing
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-introduction">Step 1 - Introduction</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-setup-and-installation">Step 2 - Setup and Installation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-defining-the-search-parameters">Step 3 - Defining the Search Parameters</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-setup-and-installation">Step 1 - Setup and Installation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-defining-the-search-parameters">Step 2 - Defining the Search Parameters</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#choosing-a-neighboring-transition-metal">Choosing a Neighboring Transition Metal</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#focusing-on-semiconductors">Focusing on Semiconductors</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-querying-the-materials-project">Step 4 - Querying the Materials Project</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-querying-the-materials-project">Step 3 - Querying the Materials Project</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#connecting-to-the-materials-project">Connecting to the Materials Project</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-exploring-the-results">Step 5 - Exploring the Results</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-6-using-matminer-datasets">Step 6 - Using Matminer Datasets</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-exploring-the-results">Step 4 - Exploring the Results</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-using-matminer-datasets">Step 5 - Using Matminer Datasets</a></li>
 </ul>
   </nav></div>
 

@@ -62,6 +62,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'querying/querying_materials';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Data Mining Materials with pymatgen and matminer" href="../data_mining/materials_scanning.html" />
     <link rel="prev" title="Visualizing Crystal Structures with Pymatgen and ASE" href="../visualization/structure_visualization.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -154,8 +155,8 @@
       
     
     
-    <img src="../_static/logo.png" class="logo__image only-light" alt="Materials Data Mining with Python - Home"/>
-    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Materials Data Mining with Python - Home"/>`);</script>
+    <img src="../_static/logo_fr.png" class="logo__image only-light" alt="Materials Data Mining with Python - Home"/>
+    <script>document.write(`<img src="../_static/logo_fr.png" class="logo__image only-dark" alt="Materials Data Mining with Python - Home"/>`);</script>
   
   
 </a></div>
@@ -176,16 +177,18 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../intro.html">
-                    Welcome to your Jupyter Book
+                    Accelerating Materials Discovery with Data-Driven Tools
                 </a>
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../tools/tools_overview.html">Overview of Tools and Resources</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../setup/environment_setup.html">Environment Setup</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../materials_project/exploring_materials_project.html">Meeting Materials Project</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../visualization/structure_visualization.html">Visualizing Crystal Structures with Pymatgen and ASE</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Querying Materials Data from the Materials Project using Pymatgen</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../data_mining/materials_scanning.html">Data Mining Materials with pymatgen and matminer</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="simple">
+</ul>
+</details></li>
 </ul>
 
     </div>
@@ -485,6 +488,7 @@ document.write(`
 <li><p>Perform a <strong>sneak peek</strong> into structure manipulation using pymatgen</p></li>
 </ul>
 <p>In the previous tutorials we have become familiar with Materials Project and Pymatgen. Now we are going to use them together.</p>
+<hr class="docutils" />
 <section id="step-1-import-necessary-libraries">
 <h2>Step 1 - Import Necessary Libraries<a class="headerlink" href="#step-1-import-necessary-libraries" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
@@ -506,6 +510,7 @@ document.write(`
 </div>
 </div>
 </section>
+<hr class="docutils" />
 <section id="step-2-setting-up-the-api-key">
 <h2>Step 2 - Setting Up the API Key<a class="headerlink" href="#step-2-setting-up-the-api-key" title="Link to this heading">#</a></h2>
 <p>To query the Materials Project database, you need an <strong>API key</strong>. This is necessary to make any request to the Materials Project API and there’s a unique key for each Materials Project account.</p>
@@ -567,6 +572,7 @@ Replace <code class="docutils literal notranslate"><span class="pre">&quot;YOUR_
 </div>
 </div>
 </section>
+<hr class="docutils" />
 <section id="step-3-querying-by-chemical-formula">
 <h2>Step 3 - Querying by Chemical Formula<a class="headerlink" href="#step-3-querying-by-chemical-formula" title="Link to this heading">#</a></h2>
 <p>Let us start with a simple query: searching for all materials with the formula <span class="math notranslate nohighlight">\(\text{CaTiO}_3\)</span>.</p>
@@ -688,6 +694,7 @@ Replace <code class="docutils literal notranslate"><span class="pre">&quot;YOUR_
 </div></div></div>
 </div>
 </section>
+<hr class="docutils" />
 <section id="step-4-querying-by-material-id">
 <h2>Step 4 - Querying by Material ID<a class="headerlink" href="#step-4-querying-by-material-id" title="Link to this heading">#</a></h2>
 <p>Suppose we want to retrieve detailed information for one specifi material. We will use its <strong>Materials Project ID</strong></p>
@@ -734,6 +741,7 @@ PeriodicSite: O (0.0, 0.0, 1.948) [0.25, 0.25, -0.0]
 </div>
 </div>
 </section>
+<hr class="docutils" />
 <section id="step-5-downloading-the-structure-as-a-cif-file">
 <h2>Step 5 - Downloading the Structure as a <code class="docutils literal notranslate"><span class="pre">.cif</span></code> File<a class="headerlink" href="#step-5-downloading-the-structure-as-a-cif-file" title="Link to this heading">#</a></h2>
 <p>Once we have the structure, we can save it locally in <code class="docutils literal notranslate"><span class="pre">.cif</span></code> format, which could be use for visualization, just like the previous tutorial, or simulations.</p>
@@ -752,6 +760,7 @@ PeriodicSite: O (0.0, 0.0, 1.948) [0.25, 0.25, -0.0]
 </div>
 </div>
 </section>
+<hr class="docutils" />
 <section id="step-6-exploring-structure-properties">
 <h2>Step 6 - Exploring Structure Properties<a class="headerlink" href="#step-6-exploring-structure-properties" title="Link to this heading">#</a></h2>
 <p>Just as we learned on the previous tutorial, we can apply that knowledge and inspect the structure properties.</p>
@@ -782,6 +791,7 @@ Atomic species: [Element Ca, Element Ca, Element Ti, Element Ti, Element O, Elem
 </div>
 </div>
 </section>
+<hr class="docutils" />
 <section id="step-7-optional-teaser-structure-manipulation">
 <h2>Step 7 (optional) - Teaser: Structure Manipulation<a class="headerlink" href="#step-7-optional-teaser-structure-manipulation" title="Link to this heading">#</a></h2>
 <p>In materials science, it’s often necessary to modify atomic structures to simulate real-world phenomena or design new materials. Two common manipulations are:</p>
@@ -886,6 +896,7 @@ After substitution: [Element Ca, Element Ca, Element Zr, Element Zr, Element O, 
 </div>
 </section>
 </section>
+<hr class="docutils" />
 <section id="step-8-summary">
 <h2>Step 8 - Summary<a class="headerlink" href="#step-8-summary" title="Link to this heading">#</a></h2>
 <p>In this tutorial, we learned how to:</p>
@@ -948,6 +959,15 @@ After substitution: [Element Ca, Element Ca, Element Zr, Element Zr, Element O, 
         <p class="prev-next-subtitle">previous</p>
         <p class="prev-next-title">Visualizing Crystal Structures with Pymatgen and ASE</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="../data_mining/materials_scanning.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Data Mining Materials with pymatgen and matminer</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
