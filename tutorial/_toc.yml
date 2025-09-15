@@ -10,7 +10,4 @@ chapters:
   - file: visualization/structure_visualization
   - file: querying/querying_materials
   - file: data_mining/materials_scanning
-    sections:
-      - file: data_mining/feature_generation
-  - file: machine_learning/intro_machine_learning
-  - file: summary
+#  - file: summary

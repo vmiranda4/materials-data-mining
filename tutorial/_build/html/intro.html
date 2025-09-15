@@ -187,9 +187,7 @@
 <li class="toctree-l1"><a class="reference internal" href="materials_project/exploring_materials_project.html">Meeting Materials Project</a></li>
 <li class="toctree-l1"><a class="reference internal" href="visualization/structure_visualization.html">Visualizing Crystal Structures with Pymatgen and ASE</a></li>
 <li class="toctree-l1"><a class="reference internal" href="querying/querying_materials.html">Querying Materials Data from the Materials Project using Pymatgen</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="data_mining/materials_scanning.html">Data Mining Materials with pymatgen and matminer</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="simple">
-</ul>
-</details></li>
+<li class="toctree-l1"><a class="reference internal" href="data_mining/materials_scanning.html">Data Mining Materials with pymatgen and matminer</a></li>
 </ul>
 
     </div>
@@ -385,11 +383,17 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-this-project-matters">Why This Project Matters</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-you-will-learn">What You will Learn</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tutorial-roadmap">Tutorial Roadmap</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#who-is-this-for">Who Is This For?</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites"><strong>Prerequisites</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-the-tutorial-in-google-colab">Running the tutorial in Google Colab</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#open-the-notebook-in-colab">1. Open the Notebook in Colab</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-required-packages">2. Install Required Packages</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-notebook-cells">3. Run the Notebook Cells</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#saving-your-progress">4. Saving Your Progress</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started">Getting Started</a></li>
@@ -411,8 +415,6 @@ document.write(`
 Using cutting-edge tools like <strong>pymatgen</strong>, <strong>ASE</strong>, and <strong>matminer</strong>, this tutorial series will guide you step by step through the process of <strong>querying</strong>, <strong>visualizing</strong>, and <strong>analyzing</strong> materials data from world-class databases.</p>
 </div></blockquote>
 <hr class="docutils" />
-<section id="why-this-project-matters">
-<h2>Why This Project Matters<a class="headerlink" href="#why-this-project-matters" title="Link to this heading">#</a></h2>
 <p>Modern <strong>materials science</strong> is undergoing a <strong>data revolution</strong>. Thanks to advances in <strong>high-throughput density functional theory (DFT)</strong>, thousands of materials are simulated and characterized daily, resulting in <strong>massive datasets</strong> that hold the key to discovering new functional compounds.</p>
 <p>However, extracting insights from these datasets is <strong>not trivial</strong>. That’s where tools like:</p>
 <ul class="simple">
@@ -422,7 +424,6 @@ Using cutting-edge tools like <strong>pymatgen</strong>, <strong>ASE</strong>, a
 <li><p><strong><a class="reference external" href="https://hackingmaterials.lbl.gov/matminer/">matminer</a></strong> → for feature extraction, dataset access, and materials data mining.</p></li>
 </ul>
 <p>help researchers, engineers, and students <strong>accelerate materials discovery</strong> for technologies like <strong>semiconductors</strong>, <strong>photovoltaics</strong>, <strong>energy storage</strong>, <strong>catalysis</strong>, <strong>clean fuels</strong>, and <strong>batteries</strong>.</p>
-</section>
 <hr class="docutils" />
 <section id="what-you-will-learn">
 <h2>What You will Learn<a class="headerlink" href="#what-you-will-learn" title="Link to this heading">#</a></h2>
@@ -487,6 +488,37 @@ Using cutting-edge tools like <strong>pymatgen</strong>, <strong>ASE</strong>, a
 </section>
 </section>
 <hr class="docutils" />
+<section id="running-the-tutorial-in-google-colab">
+<h2>Running the tutorial in Google Colab<a class="headerlink" href="#running-the-tutorial-in-google-colab" title="Link to this heading">#</a></h2>
+<p>You do not need to install anything locally to follow this tutorial. All notebooks can be opened and executed directly in <a class="reference external" href="https://colab.research.google.com/">Google Colab</a>.</p>
+<section id="open-the-notebook-in-colab">
+<h3>1. Open the Notebook in Colab<a class="headerlink" href="#open-the-notebook-in-colab" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Navigate the tutorial website.</p></li>
+<li><p>At the top of each section, click the rocket icon and then <strong>launch in colab</strong>, as shown in the picture:
+<img src="./_static/images/intro/launch_colab.jpeg" width=700 style=margin:auto/></p></li>
+</ul>
+</section>
+<section id="install-required-packages">
+<h3>2. Install Required Packages<a class="headerlink" href="#install-required-packages" title="Link to this heading">#</a></h3>
+<p>Each notebook specifies the packages it needs. Usually, you can run the first cell to install them. For example:</p>
+</section>
+<section id="run-the-notebook-cells">
+<h3>3. Run the Notebook Cells<a class="headerlink" href="#run-the-notebook-cells" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Press <strong>Shift+enter</strong> (or click the ▶ button) to execute a cell.</p></li>
+<li><p>Run the cells in orer, top to bottom.</p></li>
+<li><p>If something fails (e.g., missing package), check the installation cell again.</p></li>
+</ul>
+</section>
+<section id="saving-your-progress">
+<h3>4. Saving Your Progress<a class="headerlink" href="#saving-your-progress" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>To save a copy of the notebook with your edits: File → Save a copy in Drive</p></li>
+<li><p>To download locally: File → Download → .ipynb</p></li>
+</ul>
+</section>
+</section>
 <section id="getting-started">
 <h2>Getting Started<a class="headerlink" href="#getting-started" title="Link to this heading">#</a></h2>
 <div class="toctree-wrapper compound">
@@ -506,7 +538,7 @@ Using cutting-edge tools like <strong>pymatgen</strong>, <strong>ASE</strong>, a
         requestKernel: true,
         binderOptions: {
             repo: "vmiranda4/materials-data-mining",
-            ref: "master",
+            ref: "main",
         },
         codeMirrorConfig: {
             theme: "abcdef",
@@ -556,11 +588,17 @@ Using cutting-edge tools like <strong>pymatgen</strong>, <strong>ASE</strong>, a
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-this-project-matters">Why This Project Matters</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-you-will-learn">What You will Learn</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tutorial-roadmap">Tutorial Roadmap</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#who-is-this-for">Who Is This For?</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites"><strong>Prerequisites</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-the-tutorial-in-google-colab">Running the tutorial in Google Colab</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#open-the-notebook-in-colab">1. Open the Notebook in Colab</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-required-packages">2. Install Required Packages</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-notebook-cells">3. Run the Notebook Cells</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#saving-your-progress">4. Saving Your Progress</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started">Getting Started</a></li>

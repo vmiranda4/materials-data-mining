@@ -15,13 +15,12 @@ latex:
   latex_documents:
     targetname: book.tex
 
-# Add a bibtex file so that we can create citations
-bibtex_bibfiles:
-  - references.bib
-
 # Information about where the book exists on the web
 repository:
   url: https://github.com/vmiranda4/materials-data-mining  # Online location of your book
+  branch: main
+  path_to_book: tutorial
+
 
 # Add GitHub buttons to your book
 # See https://jupyterbook.org/customize/config.html#add-a-link-to-your-repository
@@ -31,8 +30,8 @@ html:
   use_download_button: true
 
 launch_buttons:
-  binderhub_url: "https://mybinder.org"
   colab_url: "https://colab.research.google.com"
+  notebook_interface: "jupyterlab"
   thebe: true
 
 

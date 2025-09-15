@@ -186,9 +186,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../materials_project/exploring_materials_project.html">Meeting Materials Project</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../visualization/structure_visualization.html">Visualizing Crystal Structures with Pymatgen and ASE</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Querying Materials Data from the Materials Project using Pymatgen</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../data_mining/materials_scanning.html">Data Mining Materials with pymatgen and matminer</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="simple">
-</ul>
-</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../data_mining/materials_scanning.html">Data Mining Materials with pymatgen and matminer</a></li>
 </ul>
 
     </div>
@@ -243,25 +241,7 @@
       
       
       
-      <li><a href="https://mybinder.org/v2/gh/vmiranda4/materials-data-mining/master?urlpath=tree/querying/querying_materials.ipynb" target="_blank"
-   class="btn btn-sm dropdown-item"
-   title="Launch on Binder"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  
-    <img alt="Binder logo" src="../_static/images/logo_binder.svg">
-  </span>
-<span class="btn__text-container">Binder</span>
-</a>
-</li>
-      
-      
-      
-      
-      <li><a href="https://colab.research.google.com/github/vmiranda4/materials-data-mining/blob/master/querying/querying_materials.ipynb" target="_blank"
+      <li><a href="https://colab.research.google.com/github/vmiranda4/materials-data-mining/blob/main/tutorial/querying/querying_materials.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch on Colab"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -541,32 +521,18 @@ Replace <code class="docutils literal notranslate"><span class="pre">&quot;YOUR_
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Replace with your own API key! (keep the &#39;&#39; signs)</span>
 <span class="n">API_KEY</span> <span class="o">=</span> <span class="s2">&quot;YOUR_API_KEY_HERE&quot;</span>
-<span class="n">mpr</span> <span class="o">=</span> <span class="n">MPRester</span><span class="p">(</span><span class="n">API_KEY</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">API_KEY</span> <span class="o">==</span> <span class="s2">&quot;YOUR_API_KEY_HERE&quot;</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;⚠️ Please replace &#39;YOUR_API_KEY_HERE&#39; with your Materials Project API key.&quot;</span><span class="p">)</span>
+    <span class="n">mpr</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">mpr</span> <span class="o">=</span> <span class="n">MPRester</span><span class="p">(</span><span class="n">API_KEY</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;✅ MPRester initialized successfully!&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">3</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># Replace with your own API key! (keep the &#39;&#39; signs)</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">API_KEY</span> <span class="o">=</span> <span class="s2">&quot;YOUR_API_KEY_HERE&quot;</span>
-<span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">mpr</span> <span class="o">=</span> <span class="n">MPRester</span><span class="p">(</span><span class="n">API_KEY</span><span class="p">)</span>
-
-<span class="nn">File ~/anaconda3/envs/matdata/lib/python3.11/site-packages/mp_api/client/mprester.py:171,</span> in <span class="ni">MPRester.__init__</span><span class="nt">(self, api_key, endpoint, notify_db_version, include_user_agent, monty_decode, use_document_model, session, headers, mute_progress_bars)</span>
-<span class="g g-Whitespace">    </span><span class="mi">168</span> <span class="n">api_key</span> <span class="o">=</span> <span class="n">api_key</span> <span class="ow">or</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;MP_API_KEY&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">SETTINGS</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;PMG_MAPI_KEY&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">170</span> <span class="k">if</span> <span class="n">api_key</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">api_key</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">32</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">171</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">172</span>         <span class="s2">&quot;Please use a new API key from https://materialsproject.org/api &quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">173</span>         <span class="s2">&quot;Keys for the new API are 32 characters, whereas keys for the legacy &quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">174</span>         <span class="s2">&quot;API are 16 characters.&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">175</span>     <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">177</span> <span class="bp">self</span><span class="o">.</span><span class="n">api_key</span> <span class="o">=</span> <span class="n">api_key</span>
-<span class="g g-Whitespace">    </span><span class="mi">178</span> <span class="bp">self</span><span class="o">.</span><span class="n">endpoint</span> <span class="o">=</span> <span class="n">endpoint</span> <span class="ow">or</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">179</span>     <span class="s2">&quot;MP_API_ENDPOINT&quot;</span><span class="p">,</span> <span class="s2">&quot;https://api.materialsproject.org/&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">180</span> <span class="p">)</span>
-
-<span class="ne">ValueError</span>: Please use a new API key from https://materialsproject.org/api Keys for the new API are 32 characters, whereas keys for the legacy API are 16 characters.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>⚠️ Please replace &#39;YOUR_API_KEY_HERE&#39; with your Materials Project API key.
 </pre></div>
 </div>
 </div>
@@ -619,79 +585,30 @@ Replace <code class="docutils literal notranslate"><span class="pre">&quot;YOUR_
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Retrieving SummaryDoc documents: 100%|██████████| 6/6 [00:00&lt;00:00, 51046.30it/s]
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># Query CaTiO3 structures</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">results</span> <span class="o">=</span> <span class="n">mpr</span><span class="o">.</span><span class="n">materials</span><span class="o">.</span><span class="n">summary</span><span class="o">.</span><span class="n">search</span><span class="p">(</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="n">formula</span><span class="o">=</span><span class="s2">&quot;CaTiO3&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="n">fields</span><span class="o">=</span><span class="p">[</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span>         <span class="s2">&quot;material_id&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span>         <span class="s2">&quot;formula_pretty&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span>         <span class="s2">&quot;formation_energy_per_atom&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span>         <span class="s2">&quot;band_gap&quot;</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span>     <span class="p">]</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">12</span> <span class="c1"># Convert results to DataFrame</span>
+<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span>
+<span class="g g-Whitespace">     </span><span class="mi">14</span>     <span class="p">{</span>
+<span class="g g-Whitespace">     </span><span class="mi">15</span>         <span class="s2">&quot;material_id&quot;</span><span class="p">:</span> <span class="n">r</span><span class="o">.</span><span class="n">material_id</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>     <span class="mi">20</span>     <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">results</span>
+<span class="g g-Whitespace">     </span><span class="mi">21</span> <span class="p">])</span>
+
+<span class="ne">AttributeError</span>: &#39;NoneType&#39; object has no attribute &#39;materials&#39;
 </pre></div>
 </div>
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>material_id</th>
-      <th>formula</th>
-      <th>formation_energy</th>
-      <th>band_gap</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>mp-3442</td>
-      <td>CaTiO3</td>
-      <td>-3.538691</td>
-      <td>2.2434</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>mp-754701</td>
-      <td>CaTiO3</td>
-      <td>-3.527734</td>
-      <td>3.5706</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>mp-5827</td>
-      <td>CaTiO3</td>
-      <td>-3.491620</td>
-      <td>1.8285</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>mp-4019</td>
-      <td>CaTiO3</td>
-      <td>-3.556087</td>
-      <td>2.3053</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>mp-1205364</td>
-      <td>CaTiO3</td>
-      <td>-3.544638</td>
-      <td>2.1378</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>mp-556003</td>
-      <td>CaTiO3</td>
-      <td>-3.544675</td>
-      <td>2.1586</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
+</div>
 </div>
 </section>
 <hr class="docutils" />
@@ -926,7 +843,7 @@ After substitution: [Element Ca, Element Ca, Element Zr, Element Zr, Element O, 
         requestKernel: true,
         binderOptions: {
             repo: "vmiranda4/materials-data-mining",
-            ref: "master",
+            ref: "main",
         },
         codeMirrorConfig: {
             theme: "abcdef",

@@ -25,31 +25,51 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-# Replace with your own API key! (keep the '' signs)
-API_KEY = "YOUR_API_KEY_HERE"
-mpr = MPRester(API_KEY)
+# Query CaTiO3 structures
+results = mpr.materials.summary.search(
+    formula="CaTiO3",
+    fields=[
+        "material_id",
+        "formula_pretty",
+        "formation_energy_per_atom",
+        "band_gap"
+    ]
+)
+
+# Convert results to DataFrame
+df = pd.DataFrame([
+    {
+        "material_id": r.material_id,
+        "formula": r.formula_pretty,
+        "formation_energy": r.formation_energy_per_atom,
+        "band_gap": r.band_gap
+    }
+    for r in results
+])
+
+df
 ------------------
 
 
 [31m---------------------------------------------------------------------------[39m
-[31mValueError[39m                                Traceback (most recent call last)
-[36mCell[39m[36m [39m[32mIn[2][39m[32m, line 3[39m
-[32m      1[39m [38;5;66;03m# Replace with your own API key! (keep the '' signs)[39;00m
-[32m      2[39m API_KEY = [33m"[39m[33mYOUR_API_KEY_HERE[39m[33m"[39m
-[32m----> [39m[32m3[39m mpr = [43mMPRester[49m[43m([49m[43mAPI_KEY[49m[43m)[49m
+[31mAttributeError[39m                            Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[3][39m[32m, line 2[39m
+[32m      1[39m [38;5;66;03m# Query CaTiO3 structures[39;00m
+[32m----> [39m[32m2[39m results = [43mmpr[49m[43m.[49m[43mmaterials[49m.summary.search(
+[32m      3[39m     formula=[33m"[39m[33mCaTiO3[39m[33m"[39m,
+[32m      4[39m     fields=[
+[32m      5[39m         [33m"[39m[33mmaterial_id[39m[33m"[39m,
+[32m      6[39m         [33m"[39m[33mformula_pretty[39m[33m"[39m,
+[32m      7[39m         [33m"[39m[33mformation_energy_per_atom[39m[33m"[39m,
+[32m      8[39m         [33m"[39m[33mband_gap[39m[33m"[39m
+[32m      9[39m     ]
+[32m     10[39m )
+[32m     12[39m [38;5;66;03m# Convert results to DataFrame[39;00m
+[32m     13[39m df = pd.DataFrame([
+[32m     14[39m     {
+[32m     15[39m         [33m"[39m[33mmaterial_id[39m[33m"[39m: r.material_id,
+[32m   (...)[39m[32m     20[39m     [38;5;28;01mfor[39;00m r [38;5;129;01min[39;00m results
+[32m     21[39m ])
 
-[36mFile [39m[32m~/anaconda3/envs/matdata/lib/python3.11/site-packages/mp_api/client/mprester.py:171[39m, in [36mMPRester.__init__[39m[34m(self, api_key, endpoint, notify_db_version, include_user_agent, monty_decode, use_document_model, session, headers, mute_progress_bars)[39m
-[32m    168[39m api_key = api_key [38;5;129;01mor[39;00m os.getenv([33m"[39m[33mMP_API_KEY[39m[33m"[39m) [38;5;129;01mor[39;00m SETTINGS.get([33m"[39m[33mPMG_MAPI_KEY[39m[33m"[39m)
-[32m    170[39m [38;5;28;01mif[39;00m api_key [38;5;129;01mand[39;00m [38;5;28mlen[39m(api_key) != [32m32[39m:
-[32m--> [39m[32m171[39m     [38;5;28;01mraise[39;00m [38;5;167;01mValueError[39;00m(
-[32m    172[39m         [33m"[39m[33mPlease use a new API key from https://materialsproject.org/api [39m[33m"[39m
-[32m    173[39m         [33m"[39m[33mKeys for the new API are 32 characters, whereas keys for the legacy [39m[33m"[39m
-[32m    174[39m         [33m"[39m[33mAPI are 16 characters.[39m[33m"[39m
-[32m    175[39m     )
-[32m    177[39m [38;5;28mself[39m.api_key = api_key
-[32m    178[39m [38;5;28mself[39m.endpoint = endpoint [38;5;129;01mor[39;00m os.getenv(
-[32m    179[39m     [33m"[39m[33mMP_API_ENDPOINT[39m[33m"[39m, [33m"[39m[33mhttps://api.materialsproject.org/[39m[33m"[39m
-[32m    180[39m )
-
-[31mValueError[39m: Please use a new API key from https://materialsproject.org/api Keys for the new API are 32 characters, whereas keys for the legacy API are 16 characters.
+[31mAttributeError[39m: 'NoneType' object has no attribute 'materials'
 

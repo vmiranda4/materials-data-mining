@@ -5,8 +5,6 @@
 
 ---
 
-## Why This Project Matters
-
 Modern **materials science** is undergoing a **data revolution**. Thanks to advances in **high-throughput density functional theory (DFT)**, thousands of materials are simulated and characterized daily, resulting in **massive datasets** that hold the key to discovering new functional compounds.
 
 However, extracting insights from these datasets is **not trivial**. That’s where tools like:
@@ -61,6 +59,36 @@ This tutorial series is designed for:
 - No prior experience with DFT, databases, or visualization tools required — we will guide you through it!
 
 ---
+
+## Running the tutorial in Google Colab
+
+You do not need to install anything locally to follow this tutorial. All notebooks can be opened and executed directly in [Google Colab](https://colab.research.google.com/).
+
+### 1. Open the Notebook in Colab
+- Navigate the tutorial website.
+- At the top of each section, click the rocket icon and then **launch in colab**, as shown in the picture:
+<img src="./_static/images/intro/launch_colab.jpeg" width=700 style=margin:auto/>
+
+### 2. Install Required Packages
+
+Each notebook specifies the packages it needs. Usually, you can run the first cell to install them. For example:
+
+```{python}
+!pip install pymatgen matminer seaborn
+```
+
+### 3. Run the Notebook Cells
+
+- Press **Shift+enter** (or click the ▶ button) to execute a cell.
+
+- Run the cells in orer, top to bottom.
+
+- If something fails (e.g., missing package), check the installation cell again.
+
+### 4. Saving Your Progress
+- To save a copy of the notebook with your edits: File → Save a copy in Drive
+
+- To download locally: File → Download → .ipynb
 
 ## Getting Started
 

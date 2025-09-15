@@ -185,9 +185,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../materials_project/exploring_materials_project.html">Meeting Materials Project</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../visualization/structure_visualization.html">Visualizing Crystal Structures with Pymatgen and ASE</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../querying/querying_materials.html">Querying Materials Data from the Materials Project using Pymatgen</a></li>
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Data Mining Materials with pymatgen and matminer</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="simple">
-</ul>
-</details></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Data Mining Materials with pymatgen and matminer</a></li>
 </ul>
 
     </div>
@@ -242,25 +240,7 @@
       
       
       
-      <li><a href="https://mybinder.org/v2/gh/vmiranda4/materials-data-mining/master?urlpath=tree/data_mining/materials_scanning.ipynb" target="_blank"
-   class="btn btn-sm dropdown-item"
-   title="Launch on Binder"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  
-    <img alt="Binder logo" src="../_static/images/logo_binder.svg">
-  </span>
-<span class="btn__text-container">Binder</span>
-</a>
-</li>
-      
-      
-      
-      
-      <li><a href="https://colab.research.google.com/github/vmiranda4/materials-data-mining/blob/master/data_mining/materials_scanning.ipynb" target="_blank"
+      <li><a href="https://colab.research.google.com/github/vmiranda4/materials-data-mining/blob/main/tutorial/data_mining/materials_scanning.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch on Colab"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -586,40 +566,29 @@ Neighboring elements often share similar electronic configurations, so replacing
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Replace YOUR_API_KEY_HERE with your Materials Project API key</span>
-<span class="n">API_KEY</span> <span class="o">=</span> <span class="s2">&quot;YOUR_APIA_KEY_HERE&quot;</span>
-<span class="n">mpr</span> <span class="o">=</span> <span class="n">MPRester</span><span class="p">(</span><span class="n">API_KEY</span><span class="p">)</span>
+<span class="n">API_KEY</span> <span class="o">=</span> <span class="s2">&quot;YOUR_API_KEY_HERE&quot;</span>
 
-<span class="c1"># Search parameters</span>
-<span class="n">bandgap_min</span> <span class="o">=</span> <span class="mf">1.1</span>
-<span class="n">bandgap_max</span> <span class="o">=</span> <span class="mf">3.2</span>
-<span class="n">chemsys</span> <span class="o">=</span> <span class="s2">&quot;Ca-V-O&quot;</span>  <span class="c1"># Searching for CaVO3 and similar oxides</span>
+<span class="k">if</span> <span class="n">API_KEY</span> <span class="o">==</span> <span class="s2">&quot;YOUR_API_KEY_HERE&quot;</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;⚠️ Please replace &#39;YOUR_API_KEY_HERE&#39; with your Materials Project API key.&quot;</span><span class="p">)</span>
+    <span class="n">mpr</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">mpr</span> <span class="o">=</span> <span class="n">MPRester</span><span class="p">(</span><span class="n">API_KEY</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;✅ MPRester initialized successfully!&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">3</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># Replace YOUR_API_KEY_HERE with your Materials Project API key</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">API_KEY</span> <span class="o">=</span> <span class="s2">&quot;YOUR_APIA_KEY_HERE&quot;</span>
-<span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">mpr</span> <span class="o">=</span> <span class="n">MPRester</span><span class="p">(</span><span class="n">API_KEY</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="c1"># Search parameters</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="n">bandgap_min</span> <span class="o">=</span> <span class="mf">1.1</span>
-
-<span class="nn">File ~/anaconda3/envs/matdata/lib/python3.11/site-packages/mp_api/client/mprester.py:171,</span> in <span class="ni">MPRester.__init__</span><span class="nt">(self, api_key, endpoint, notify_db_version, include_user_agent, monty_decode, use_document_model, session, headers, mute_progress_bars)</span>
-<span class="g g-Whitespace">    </span><span class="mi">168</span> <span class="n">api_key</span> <span class="o">=</span> <span class="n">api_key</span> <span class="ow">or</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;MP_API_KEY&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">SETTINGS</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;PMG_MAPI_KEY&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">170</span> <span class="k">if</span> <span class="n">api_key</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">api_key</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">32</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">171</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">172</span>         <span class="s2">&quot;Please use a new API key from https://materialsproject.org/api &quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">173</span>         <span class="s2">&quot;Keys for the new API are 32 characters, whereas keys for the legacy &quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">174</span>         <span class="s2">&quot;API are 16 characters.&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">175</span>     <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">177</span> <span class="bp">self</span><span class="o">.</span><span class="n">api_key</span> <span class="o">=</span> <span class="n">api_key</span>
-<span class="g g-Whitespace">    </span><span class="mi">178</span> <span class="bp">self</span><span class="o">.</span><span class="n">endpoint</span> <span class="o">=</span> <span class="n">endpoint</span> <span class="ow">or</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">179</span>     <span class="s2">&quot;MP_API_ENDPOINT&quot;</span><span class="p">,</span> <span class="s2">&quot;https://api.materialsproject.org/&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">180</span> <span class="p">)</span>
-
-<span class="ne">ValueError</span>: Please use a new API key from https://materialsproject.org/api Keys for the new API are 32 characters, whereas keys for the legacy API are 16 characters.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>⚠️ Please replace &#39;YOUR_API_KEY_HERE&#39; with your Materials Project API key.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Search parameters</span>
+<span class="n">bandgap_min</span> <span class="o">=</span> <span class="mf">1.1</span>
+<span class="n">bandgap_max</span> <span class="o">=</span> <span class="mf">3.2</span>
+<span class="n">chemsys</span> <span class="o">=</span> <span class="s2">&quot;Ca-V-O&quot;</span>  <span class="c1"># Searching for CaVO3 and similar oxides</span>
 </pre></div>
 </div>
 </div>
@@ -654,174 +623,27 @@ Neighboring elements often share similar electronic configurations, so replacing
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Retrieving SummaryDoc documents: 100%|██████████| 15/15 [00:00&lt;00:00, 91846.07it/s]
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># Query Materials Project for Ca-Zr-O semiconductors</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">results_mp</span> <span class="o">=</span> <span class="n">mpr</span><span class="o">.</span><span class="n">materials</span><span class="o">.</span><span class="n">summary</span><span class="o">.</span><span class="n">search</span><span class="p">(</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="n">chemsys</span><span class="o">=</span><span class="n">chemsys</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="n">band_gap</span><span class="o">=</span><span class="p">(</span><span class="n">bandgap_min</span><span class="p">,</span> <span class="n">bandgap_max</span><span class="p">),</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span>     <span class="n">fields</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;material_id&quot;</span><span class="p">,</span> <span class="s2">&quot;formula_pretty&quot;</span><span class="p">,</span> <span class="s2">&quot;band_gap&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span>             <span class="s2">&quot;formation_energy_per_atom&quot;</span><span class="p">,</span> <span class="s2">&quot;density&quot;</span><span class="p">,</span> <span class="s2">&quot;symmetry&quot;</span><span class="p">]</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="n">df_mp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span>     <span class="p">{</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span>         <span class="s2">&quot;material_id&quot;</span><span class="p">:</span> <span class="n">r</span><span class="o">.</span><span class="n">material_id</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>     <span class="mi">18</span>     <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">results_mp</span>
+<span class="g g-Whitespace">     </span><span class="mi">19</span> <span class="p">])</span>
+<span class="g g-Whitespace">     </span><span class="mi">21</span> <span class="c1"># Sort by band gap for better readability</span>
+
+<span class="ne">AttributeError</span>: &#39;NoneType&#39; object has no attribute &#39;materials&#39;
 </pre></div>
 </div>
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>material_id</th>
-      <th>formula</th>
-      <th>band_gap</th>
-      <th>formation_energy_per_atom</th>
-      <th>density</th>
-      <th>crystal_system</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>mp-1048922</td>
-      <td>CaV2O4</td>
-      <td>1.1633</td>
-      <td>-2.709560</td>
-      <td>3.867841</td>
-      <td>Trigonal</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>mp-1041142</td>
-      <td>CaV2O4</td>
-      <td>1.2168</td>
-      <td>-2.736091</td>
-      <td>3.852460</td>
-      <td>Trigonal</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>mp-1365417</td>
-      <td>CaV2O4</td>
-      <td>1.3267</td>
-      <td>-2.684335</td>
-      <td>3.898550</td>
-      <td>Monoclinic</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>mp-1284741</td>
-      <td>Ca2V3O8</td>
-      <td>1.4963</td>
-      <td>-2.862569</td>
-      <td>3.822025</td>
-      <td>Monoclinic</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>mp-1342904</td>
-      <td>CaV2O6</td>
-      <td>1.5352</td>
-      <td>-2.567944</td>
-      <td>3.616555</td>
-      <td>Orthorhombic</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>mp-1835930</td>
-      <td>CaV2O4</td>
-      <td>1.5513</td>
-      <td>-2.788971</td>
-      <td>4.098466</td>
-      <td>Monoclinic</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>mp-1042856</td>
-      <td>Ca2V3O8</td>
-      <td>1.6592</td>
-      <td>-2.765350</td>
-      <td>3.571802</td>
-      <td>Hexagonal</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>mp-1663141</td>
-      <td>Ca2V3O8</td>
-      <td>1.9017</td>
-      <td>-2.777982</td>
-      <td>3.562255</td>
-      <td>Hexagonal</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>mp-1043217</td>
-      <td>CaV2O5</td>
-      <td>2.1831</td>
-      <td>-2.758699</td>
-      <td>3.054736</td>
-      <td>Orthorhombic</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>mp-891955</td>
-      <td>Ca10V6O25</td>
-      <td>2.3146</td>
-      <td>-2.990032</td>
-      <td>3.102293</td>
-      <td>Trigonal</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>mp-891956</td>
-      <td>Ca10V6O25</td>
-      <td>2.3495</td>
-      <td>-3.018828</td>
-      <td>3.011928</td>
-      <td>Trigonal</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>mp-18866</td>
-      <td>CaV4O9</td>
-      <td>2.5061</td>
-      <td>-2.640345</td>
-      <td>3.491107</td>
-      <td>Tetragonal</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>mp-19347</td>
-      <td>CaV3O7</td>
-      <td>2.6227</td>
-      <td>-2.711809</td>
-      <td>3.303731</td>
-      <td>Orthorhombic</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>mp-27624</td>
-      <td>CaV2O6</td>
-      <td>2.8812</td>
-      <td>-2.699767</td>
-      <td>3.116052</td>
-      <td>Monoclinic</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>mp-27614</td>
-      <td>Ca2V2O7</td>
-      <td>2.9553</td>
-      <td>-2.908076</td>
-      <td>3.354658</td>
-      <td>Triclinic</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
+</div>
 </div>
 </section>
 </section>
@@ -1571,8 +1393,6 @@ Name: gap pbe, dtype: float64
 </ul>
 </section>
 </section>
-<div class="toctree-wrapper compound">
-</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1580,7 +1400,7 @@ Name: gap pbe, dtype: float64
         requestKernel: true,
         binderOptions: {
             repo: "vmiranda4/materials-data-mining",
-            ref: "master",
+            ref: "main",
         },
         codeMirrorConfig: {
             theme: "abcdef",

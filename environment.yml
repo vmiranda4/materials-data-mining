@@ -18,9 +18,6 @@ dependencies:
   - scipy
   - matplotlib
   - seaborn
-  - plotly
-  - scikit-learn
-  - scikit-image
   
   # Materials science specific
   - pymatgen
